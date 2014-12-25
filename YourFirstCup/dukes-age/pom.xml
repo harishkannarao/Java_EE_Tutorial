@@ -19,6 +19,10 @@
     <packaging>war</packaging>
     <name>dukes-age</name>
 
+    <build>
+        <finalName>dukes-age</finalName>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
