@@ -23,12 +23,4 @@
         <finalName>dukes-age</finalName>
     </build>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>jaxrs-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
-
 </project>
