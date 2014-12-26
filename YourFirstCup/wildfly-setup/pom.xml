@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>your-first-cup</artifactId>
+        <groupId>com.mycompany</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>wildfly-setup</artifactId>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+
+    <properties>
+        <wildfly.extract.dirName>wildfly-8.1.0.Final</wildfly.extract.dirName>
+        <wildfly.home>${project.build.directory}/${wildfly.extract.dirName}</wildfly.home>
+        <wildfly.server>${wildfly.home}/standalone</wildfly.server>
+        <wildfly.deployments>${wildfly.server}/deployments</wildfly.deployments>
+        <wildfly.configuration>${wildfly.server}/configuration</wildfly.configuration>
+        <wildfly.log>${wildfly.server}/log</wildfly.log>
+
+    </properties>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-wildfly</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.wildfly</groupId>
+                                    <artifactId>wildfly-dist</artifactId>
+                                    <version>8.1.0.Final</version>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <destFileName>${wildfly.extract.dirName}</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-dukes-age-war</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.mycompany</groupId>
+                                    <artifactId>dukes-age</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>dukes-age.war</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${wildfly.deployments}</outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>copy-firstcup-war</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.mycompany</groupId>
+                                    <artifactId>firstcup-war</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>firstcup-war.war</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${wildfly.deployments}</outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>delete-wildfly-standalone-configurations</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <delete>
+                                    <fileset dir="${wildfly.configuration}" includes="standalone.xml" />
+                                    <fileset dir="${wildfly.configuration}" includes="standalone-full.xml" />
+                                    <fileset dir="${wildfly.configuration}" includes="standalone-full-ha.xml" />
+                                    <fileset dir="${wildfly.configuration}" includes="standalone-ha.xml" />
+                                </delete>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-wildfly-configuration</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                 <resource>
+                                    <directory>${project.basedir}/conf</directory>
+                                    <includes>
+                                        <include>standalone.xml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${wildfly.configuration}</outputDirectory>
+                            <overwrite>true</overwrite>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>start-wildfly</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skipIntegrationTest}</skip>
+                            <configuration>
+                                <properties>
+                                    <cargo.jvmargs>
+                                        -Xms512M
+                                        -Xmx1024M
+                                        -XX:MaxPermSize=512M
+                                    </cargo.jvmargs>
+                                </properties>
+                            </configuration>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-cli</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <configuration>
+                                <properties>
+                                    <cargo.jvmargs>
+                                        -Xms512M
+                                        -Xmx1024M
+                                        -XX:MaxPermSize=512M
+                                        -Xdebug
+                                        -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8787
+                                        -Xnoagent
+                                        -Djava.compiler=NONE
+                                    </cargo.jvmargs>
+                                </properties>
+                            </configuration>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <container>
+                        <containerId>wildfly8x</containerId>
+                        <home>${wildfly.home}</home>
+                        <timeout>400000</timeout>
+                        <output>${wildfly.log}/maven_cargo.log</output>
+                    </container>
+                    <configuration>
+                        <type>existing</type>
+                        <home>${wildfly.server}</home>
+                    </configuration>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
