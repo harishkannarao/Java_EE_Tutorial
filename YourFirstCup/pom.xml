@@ -17,7 +17,7 @@
     </modules>
 
     <properties>
-        <skipIntegrationTest>false</skipIntegrationTest>
+        <skipFunctionalTest>false</skipFunctionalTest>
     </properties>
 
     <build>

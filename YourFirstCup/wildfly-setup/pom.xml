@@ -159,7 +159,7 @@
                             <goal>start</goal>
                         </goals>
                         <configuration>
-                            <skip>${skipIntegrationTest}</skip>
+                            <skip>${skipFunctionalTest}</skip>
                             <configuration>
                                 <properties>
                                     <cargo.jvmargs>
