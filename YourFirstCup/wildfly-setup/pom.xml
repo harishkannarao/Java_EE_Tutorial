@@ -36,6 +36,7 @@
                             <goal>unpack</goal>
                         </goals>
                         <configuration>
+                            <skip>${skipServerSetup}</skip>
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>org.wildfly</groupId>
@@ -57,6 +58,7 @@
                             <goal>copy</goal>
                         </goals>
                         <configuration>
+                            <skip>${skipServerSetup}</skip>
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>com.mycompany</groupId>
@@ -80,6 +82,7 @@
                             <goal>copy</goal>
                         </goals>
                         <configuration>
+                            <skip>${skipServerSetup}</skip>
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>com.mycompany</groupId>
@@ -109,7 +112,8 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target>
+                            <skip>${skipServerSetup}</skip>
+                            <target name="delete default wildfly configuration files">
                                 <delete>
                                     <fileset dir="${wildfly.configuration}" includes="standalone.xml" />
                                     <fileset dir="${wildfly.configuration}" includes="standalone-full.xml" />
@@ -119,30 +123,17 @@
                             </target>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <executions>
                     <execution>
-                        <id>copy-wildfly-configuration</id>
+                        <id>copy-wildfly-standalone-full-configurations</id>
                         <phase>pre-integration-test</phase>
                         <goals>
-                            <goal>copy-resources</goal>
+                            <goal>run</goal>
                         </goals>
                         <configuration>
-                            <resources>
-                                 <resource>
-                                    <directory>${project.basedir}/conf</directory>
-                                    <includes>
-                                        <include>standalone.xml</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                            <outputDirectory>${wildfly.configuration}</outputDirectory>
-                            <overwrite>true</overwrite>
+                            <skip>${skipServerSetup}</skip>
+                            <target name="copy and rename file wildfly configuration files">
+                                <copy file="${project.basedir}/conf/standalone-full.xml" tofile="${wildfly.configuration}/standalone.xml" />
+                            </target>
                         </configuration>
                     </execution>
                 </executions>
@@ -159,7 +150,7 @@
                             <goal>start</goal>
                         </goals>
                         <configuration>
-                            <skip>${skipFunctionalTest}</skip>
+                            <skip>${skipServerStartup}</skip>
                             <configuration>
                                 <properties>
                                     <cargo.jvmargs>
