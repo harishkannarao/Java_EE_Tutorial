@@ -107,12 +107,23 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Java EE 7 Full Profile -->
             <dependency>
                 <groupId>javax</groupId>
                 <artifactId>javaee-api</artifactId>
                 <version>7.0</version>
                 <scope>provided</scope>
             </dependency>
+
+            <!-- Java EE 7 Web Profile -->
+            <!--
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-web-api</artifactId>
+                <version>7.0</version>
+                <scope>provided</scope>
+            </dependency>
+            -->
 
             <dependency>
                 <groupId>junit</groupId>
@@ -125,6 +136,13 @@
                 <groupId>org.glassfish.jersey.core</groupId>
                 <artifactId>jersey-client</artifactId>
                 <version>2.14</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.weld.se</groupId>
+                <artifactId>weld-se</artifactId>
+                <version>2.2.8.Final</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -140,6 +158,12 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld.se</groupId>
+            <artifactId>weld-se</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
