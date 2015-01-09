@@ -46,6 +46,12 @@
             <artifactId>jersey-client</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-invoker</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>
