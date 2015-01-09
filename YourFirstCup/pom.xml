@@ -21,6 +21,7 @@
         <skipServerSetup>false</skipServerSetup>
         <skipServerStartup>false</skipServerStartup>
         <skipFunctionalTest>false</skipFunctionalTest>
+        <serverPortOffset>0</serverPortOffset>
     </properties>
 
     <profiles>
