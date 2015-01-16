@@ -175,11 +175,8 @@
                                         -Xms512M
                                         -Xmx1024M
                                         -XX:MaxPermSize=512M
-                                        -Xdebug
-                                        -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8787
-                                        -Xnoagent
-                                        -Djava.compiler=NONE
                                         -Djboss.socket.binding.port-offset=${serverPortOffset}
+                                        -agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=n
                                     </cargo.jvmargs>
                                 </properties>
                             </configuration>
