@@ -6,7 +6,7 @@ mvn clean install
 Generating html reports for test failure:
 mvn surefire-report:report-only
 
-Run unit tests:
+Run unit tests only:
 mvn clean install -P unit-tests
 
 Deploy app and start server:
@@ -14,7 +14,7 @@ mvn clean install -P deploy-apps
 mvn cargo:run -pl :wildfly-setup
 Server will be accessible at http://localhost:8080
 
-Run functional tests:
+Run functional tests only:
 mvn clean install -P deploy-apps
 mvn cargo:run -pl :wildfly-setup
 mvn clean install -P functional-tests
