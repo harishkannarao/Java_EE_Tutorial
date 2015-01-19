@@ -1,4 +1,4 @@
-package firstcup.dukesage.resource;
+package firstcup.dukesage.util;
 
 import org.apache.maven.shared.invoker.*;
 
