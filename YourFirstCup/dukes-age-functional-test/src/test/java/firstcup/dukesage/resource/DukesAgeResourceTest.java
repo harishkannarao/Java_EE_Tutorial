@@ -1,5 +1,6 @@
 package firstcup.dukesage.resource;
 
+import firstcup.dukesage.TestBase;
 import org.junit.Test;
 
 import javax.ws.rs.client.Client;
@@ -10,7 +11,7 @@ import java.util.GregorianCalendar;
 
 import static org.junit.Assert.assertEquals;
 
-public class DukesAgeResourceTest {
+public class DukesAgeResourceTest extends TestBase {
 
     @Test
     public void resource_shouldReturnDukesAge() {
@@ -24,7 +25,7 @@ public class DukesAgeResourceTest {
     private int getAgeFromService() {
         Client client = ClientBuilder.newClient();
         WebTarget target
-                = client.target("http://localhost:8080/dukes-age/webapi/dukesAge");
+                = client.target(getAppServerUrl() + "/dukes-age/webapi/dukesAge");
         String response = target.request().get(String.class);
         return Integer.parseInt(response);
     }

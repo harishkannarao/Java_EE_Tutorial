@@ -13,6 +13,10 @@
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
 
+    <properties>
+        <appServerUrl>http://localhost:8080</appServerUrl>
+    </properties>
+
     <build>
         <finalName>${project.artifactId}</finalName>
 
@@ -23,6 +27,9 @@
                 <configuration>
                     <!-- skips test during test phase -->
                     <skip>true</skip>
+                    <systemPropertyVariables>
+                        <appServerUrl>${appServerUrl}</appServerUrl>
+                    </systemPropertyVariables>
                 </configuration>
                 <executions>
                     <execution>
