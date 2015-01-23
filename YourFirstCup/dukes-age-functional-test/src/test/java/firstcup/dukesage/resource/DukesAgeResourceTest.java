@@ -15,14 +15,14 @@ public class DukesAgeResourceTest extends TestBase {
 
     @Test
     public void resource_shouldReturnDukesAge() {
-        int dukesAgeFromService = getAgeFromService();
+        int dukesAgeFromService = getAgeFromRestService();
         int expectedAge = calculateExpectedAge();
 
         assertEquals("Incorrect age", expectedAge, dukesAgeFromService);
     }
 
 
-    private int getAgeFromService() {
+    private int getAgeFromRestService() {
         Client client = ClientBuilder.newClient();
         WebTarget target
                 = client.target(getAppServerUrl() + "/dukes-age/webapi/dukesAge");
