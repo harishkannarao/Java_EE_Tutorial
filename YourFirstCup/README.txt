@@ -3,8 +3,8 @@ How tos:
 Run full build (unit tests, deploy app and functional tests):
 mvn clean install
 
-Generating html reports for test failure:
-mvn surefire-report:report-only
+Html report for tests (both success and failure) will be available in:
+{projectDirectory}/target/site/failsafe-report.html
 
 Run unit tests only:
 mvn clean install -P unit-tests
