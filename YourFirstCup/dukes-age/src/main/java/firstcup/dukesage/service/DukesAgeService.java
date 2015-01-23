@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 
 public class DukesAgeService {
 
-    public int getAge() {
+    public String getAge() {
         // Create a new Calendar for Duke's birthday
         Calendar dukesBirthday = new GregorianCalendar(1995, Calendar.MAY, 23);
 // Create a new Calendar for today
@@ -19,7 +19,7 @@ public class DukesAgeService {
         if (now.before(dukesBirthday)) {
             dukesAge--;
         }
-// Return Duke's age
-        return dukesAge;
+// Return Duke's age as String
+        return "" + dukesAge;
     }
 }

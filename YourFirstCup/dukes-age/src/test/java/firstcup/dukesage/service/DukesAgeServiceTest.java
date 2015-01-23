@@ -14,13 +14,13 @@ public class DukesAgeServiceTest {
 
     @Test
     public void getAge_shouldReturnDukesAge() {
-        int actualAge = service.getAge();
-        int expectedAge = calculateExpectedAge();
+        String actualAge = service.getAge();
+        String expectedAge = calculateExpectedAge();
 
         assertEquals("Incorrect age", expectedAge, actualAge);
     }
 
-    private int calculateExpectedAge() {
+    private String calculateExpectedAge() {
         // same logic as in DukesAgeService
         Calendar dukesBirthday = new GregorianCalendar(1995, Calendar.MAY, 23);
         Calendar now = GregorianCalendar.getInstance();
@@ -29,7 +29,7 @@ public class DukesAgeServiceTest {
         if (now.before(dukesBirthday)) {
             dukesAge--;
         }
-        return dukesAge;
+        return "" + dukesAge;
     }
 
 

@@ -11,6 +11,7 @@ import firstcup.dukesage.service.DukesAgeService;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -22,14 +23,8 @@ import javax.ws.rs.Produces;
 @Path("dukesAge")
 public class DukesAgeResource {
 
-    DukesAgeService service = null;
-
-    /**
-     * Creates a new instance of DukesAgeResource
-     */
-    public DukesAgeResource() {
-        service = new DukesAgeService();
-    }
+    @Inject
+    DukesAgeService service;
 
     /**
      * Retrieves representation of an instance of DukesAgeResource
@@ -39,8 +34,7 @@ public class DukesAgeResource {
     @GET
     @Produces("text/plain")
     public String getText() {
-
-        // Return a String representation of Duke's age
-        return "" + service.getAge();
+        // Return Duke's age from service
+        return service.getAge();
     }
 }
