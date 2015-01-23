@@ -23,20 +23,17 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
+                <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
-                    <!-- skips test during test phase -->
-                    <skip>true</skip>
                     <systemPropertyVariables>
                         <appServerUrl>${appServerUrl}</appServerUrl>
                     </systemPropertyVariables>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>integration-tests</id>
-                        <phase>integration-test</phase>
                         <goals>
-                            <goal>test</goal>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
                         </goals>
                         <configuration>
                             <skip>${skipFunctionalTest}</skip>
