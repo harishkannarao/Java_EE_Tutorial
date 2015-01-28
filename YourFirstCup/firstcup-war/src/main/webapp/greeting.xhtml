@@ -17,7 +17,7 @@
         <title>Firstcup Greeting Page</title>
     </h:head>
     <h:body>
-        <h:form>
+        <h:form id="inputForm">
             <h2>
                 <h:outputText value="#{bundle.Welcome}"/>
             </h2>
@@ -29,7 +29,7 @@
             <h:outputText value="#{bundle.YourBD} "/>
             <fc:inputDate id="userBirthday" date="#{dukesBDay.yourBD}" />
             <p/>
-            <h:commandButton value="#{bundle.Submit}"
+            <h:commandButton id="submit" value="#{bundle.Submit}"
                              action="#{dukesBDay.processBirthday}"/>
         </h:form>
 
