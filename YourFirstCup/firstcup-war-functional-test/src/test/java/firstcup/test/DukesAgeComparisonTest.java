@@ -1,5 +1,8 @@
 package firstcup.test;
 
+import firstcup.page.GreetingPage;
+import firstcup.page.HomePage;
+import firstcup.page.ResponsePage;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,23 +14,23 @@ public class DukesAgeComparisonTest extends TestBase{
     @Test
     public void shouldCalculateAgeDifferenceAndAverageAgeDifference() {
         // navigate to home page
-        String homePage = getAppServerUrl() + "/firstcup-war";
-        getDriver().get(homePage);
+        HomePage homePage = new HomePage(getDriver(), getAppServerUrl());
+        homePage.navigate();
 
-        // get input date element by id
-        WebElement element = getDriver().findElement(By.id("inputForm:userBirthday:getdate"));
+        // greetings page will be displayed
+        GreetingPage greetingPage = new GreetingPage(getDriver(), getAppServerUrl());
+        // set the birthday
+        greetingPage.setBirthday("09/10/2012");
+        // submit the value
+        greetingPage.clickSubmit();
 
-        // enter some valid values
-        element.sendKeys("09/10/2012");
-
-        // now submit the form. WebDriver will find the form for us from the element
-        getDriver().findElement(By.id("inputForm:submit")).click();
-
-        // get the html text
-        String ageDiffMsg = getDriver().findElement(By.id("msgAgeDiff")).getText();
+        // response page will be displayed
+        ResponsePage responsePage = new ResponsePage(getDriver(), getAppServerUrl());
+        // get the age difference message
+        String ageDiffMsg = responsePage.getAgeDifferenceMessage();
         assertEquals("You are 17 years younger than Duke!", ageDiffMsg);
-
-        String avgAgeDiffMsg = getDriver().findElement(By.id("msgAvgAgeDiff")).getText();
+        // get the average age difference message
+        String avgAgeDiffMsg = responsePage.getAverageAgeDifferenceMessage();
         assertEquals("The average age difference of all First Cup users is -17.0.", avgAgeDiffMsg);
     }
 
