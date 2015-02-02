@@ -14,18 +14,18 @@ public class DukesAgeComparisonTest extends TestBase{
     @Test
     public void shouldCalculateAgeDifferenceAndAverageAgeDifference() {
         // navigate to home page
-        HomePage homePage = new HomePage(getDriver(), getAppServerUrl());
+        HomePage homePage = new HomePage(driver, getAppServerUrl());
         homePage.navigate();
 
         // greetings page will be displayed
-        GreetingPage greetingPage = new GreetingPage(getDriver(), getAppServerUrl());
+        GreetingPage greetingPage = new GreetingPage(driver, getAppServerUrl());
         // set the birthday
         greetingPage.setBirthday("09/10/2012");
         // submit the value
         greetingPage.clickSubmit();
 
         // response page will be displayed
-        ResponsePage responsePage = new ResponsePage(getDriver(), getAppServerUrl());
+        ResponsePage responsePage = new ResponsePage(driver, getAppServerUrl());
         // get the age difference message
         String ageDiffMsg = responsePage.getAgeDifferenceMessage();
         assertEquals("You are 17 years younger than Duke!", ageDiffMsg);
