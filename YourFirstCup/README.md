@@ -13,6 +13,14 @@ Run unit tests only:
 ---
 `mvn clean install -P unit-tests`
 
+Run functional tests only:
+---
+`mvn clean install -P functional-tests`
+
+**To run webdriver to firefox browser**
+
+`mvn clean install -P functional-tests -Ddriver=firefox`
+
 Deploy app and start server:
 ---
 `mvn clean install -P deploy-apps`
@@ -20,14 +28,6 @@ Deploy app and start server:
 `mvn cargo:run -pl :wildfly-setup`
 
 Server will be accessible at [http://localhost:8080](http://localhost:8080)
-
-Run functional tests only:
----
-`mvn clean install -P deploy-apps`
-
-`mvn cargo:run -pl :wildfly-setup`
-
-`mvn clean install -P functional-tests`
 
 Run individual functional test in IDE:
 ---

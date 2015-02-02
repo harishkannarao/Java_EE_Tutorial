@@ -5,6 +5,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public abstract class TestBase {
 
@@ -15,8 +16,16 @@ public abstract class TestBase {
     
     private static Weld weld = null;
 
+    private static final String DRIVER_KEY = "driver";
+    private static final String HTML_UNIT_DRIVER = "htmlunit";
+    private static final String FIREFOX_DRIVER = "firefox";
+
+    private static final String APP_SERVER_KEY = "appServerUrl";
+    private static final String DEFAULT_APP_SERVER_VALUE = "http://localhost:8080";
+
+
     protected String getAppServerUrl() {
-        return System.getProperty("appServerUrl", "http://localhost:8080");
+        return System.getProperty(APP_SERVER_KEY, DEFAULT_APP_SERVER_VALUE);
     }
 
     protected WebDriver getDriver() {
@@ -25,7 +34,12 @@ public abstract class TestBase {
 
     @BeforeClass
     public static void initializeWebDriver() {
-        driver = new FirefoxDriver();
+        String driverType = System.getProperty(DRIVER_KEY, HTML_UNIT_DRIVER);
+        if (HTML_UNIT_DRIVER.equals(driverType)) {
+            driver = new HtmlUnitDriver(true);
+        } else if (FIREFOX_DRIVER.equals(driverType)) {
+            driver = new FirefoxDriver();
+        }
     }
 
     @AfterClass
