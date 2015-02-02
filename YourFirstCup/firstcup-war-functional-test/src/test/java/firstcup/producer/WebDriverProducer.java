@@ -14,7 +14,7 @@ public class WebDriverProducer {
     private static final String FIREFOX_DRIVER = "firefox";
 
     @Produces
-    private WebDriver initializeWebDriver() {
+    public WebDriver createWebDriver() {
         WebDriver driver = null;
         String driverType = System.getProperty(DRIVER_KEY, HTML_UNIT_DRIVER);
         if (HTML_UNIT_DRIVER.equals(driverType)) {
@@ -25,7 +25,7 @@ public class WebDriverProducer {
         return driver;
     }
 
-    private void closeWebDriver(@Disposes WebDriver driver) {
+    public void closeWebDriver(@Disposes WebDriver driver) {
         driver.quit();
     }
 }

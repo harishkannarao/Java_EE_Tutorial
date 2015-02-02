@@ -1,5 +1,6 @@
 package firstcup.test;
 
+import firstcup.producer.qualifier.AppUrl;
 import firstcup.runner.WeldJUnit4Runner;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -11,12 +12,12 @@ public abstract class TestBase {
 
     @Inject
     protected WebDriver driver;
-
-    private static final String APP_SERVER_KEY = "appServerUrl";
-    private static final String DEFAULT_APP_SERVER_VALUE = "http://localhost:8080";
+    @Inject
+    @AppUrl
+    private String appServerUrl;
 
     protected String getAppServerUrl() {
-        return System.getProperty(APP_SERVER_KEY, DEFAULT_APP_SERVER_VALUE);
+        return appServerUrl;
     }
 
 }
