@@ -6,10 +6,16 @@ import org.openqa.selenium.WebDriver;
 public class ResponsePage extends PageBase{
 
     private static final String PAGE_URL = "response.xhtml";
+    private static final String PAGE_ID = "qa-response";
 
     @Override
     protected String getPageUrl() {
         return PAGE_URL;
+    }
+
+    @Override
+    protected String getPageId() {
+        return PAGE_ID;
     }
 
     public String getAgeDifferenceMessage() {

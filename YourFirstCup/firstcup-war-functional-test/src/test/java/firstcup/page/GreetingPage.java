@@ -7,10 +7,16 @@ import org.openqa.selenium.WebElement;
 public class GreetingPage extends PageBase{
 
     private static final String PAGE_URL = "greeting.xhtml";
+    private static final String PAGE_ID = "qa-greeting";
 
     @Override
     protected String getPageUrl() {
         return PAGE_URL;
+    }
+
+    @Override
+    protected String getPageId() {
+        return PAGE_ID;
     }
 
     public void setBirthday(String birthday) {
