@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 
@@ -14,6 +15,7 @@ public class WebDriverProducer {
     private static final String FIREFOX_DRIVER = "firefox";
 
     @Produces
+    @ApplicationScoped
     public WebDriver createWebDriver() {
         WebDriver driver = null;
         String driverType = System.getProperty(DRIVER_KEY, HTML_UNIT_DRIVER);
