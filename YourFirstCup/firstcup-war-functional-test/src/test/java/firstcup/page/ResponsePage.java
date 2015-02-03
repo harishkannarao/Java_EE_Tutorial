@@ -5,24 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class ResponsePage extends PageBase{
 
-    private final WebDriver driver;
-    private final String appUrl;
-    private static final String PAGE_URL = "/firstcup-war/response.xhtml";
-
-    public ResponsePage(WebDriver driver, String appUrl) {
-        this.driver = driver;
-        this.appUrl = appUrl;
-    }
-
-    @Override
-    protected WebDriver getDriver() {
-        return this.driver;
-    }
-
-    @Override
-    protected String getAppUrl() {
-        return this.appUrl;
-    }
+    private static final String PAGE_URL = "response.xhtml";
 
     @Override
     protected String getPageUrl() {
@@ -30,10 +13,10 @@ public class ResponsePage extends PageBase{
     }
 
     public String getAgeDifferenceMessage() {
-        return getDriver().findElement(By.id("msgAgeDiff")).getText();
+        return driver.findElement(By.id("msgAgeDiff")).getText();
     }
 
     public String getAverageAgeDifferenceMessage() {
-        return getDriver().findElement(By.id("msgAvgAgeDiff")).getText();
+        return driver.findElement(By.id("msgAvgAgeDiff")).getText();
     }
 }

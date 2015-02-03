@@ -1,14 +1,26 @@
 package firstcup.page;
 
+import firstcup.producer.qualifier.AppContext;
+import firstcup.producer.qualifier.AppUrl;
 import org.openqa.selenium.WebDriver;
+
+import javax.inject.Inject;
 
 public abstract class PageBase {
 
-    protected abstract WebDriver getDriver();
-    protected abstract String getAppUrl();
+    @Inject
+    protected WebDriver driver;
+    @Inject
+    @AppUrl
+    protected String appUrl;
+    @Inject
+    @AppContext
+    protected String appContext;
+    protected static final String PATH_SEPERATOR = "/";
+
     protected abstract String getPageUrl();
 
     public void navigate() {
-        getDriver().get(getAppUrl() + getPageUrl());
+        driver.get(appUrl + PATH_SEPERATOR + appContext + PATH_SEPERATOR + getPageUrl());
     }
 }
