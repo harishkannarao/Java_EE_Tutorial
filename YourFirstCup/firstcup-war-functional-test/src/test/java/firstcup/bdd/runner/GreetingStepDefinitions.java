@@ -14,7 +14,6 @@ import java.util.GregorianCalendar;
 
 import static org.junit.Assert.assertEquals;
 
-@Singleton
 public class GreetingStepDefinitions {
     @Inject
     private GreetingPage greetingPage;
