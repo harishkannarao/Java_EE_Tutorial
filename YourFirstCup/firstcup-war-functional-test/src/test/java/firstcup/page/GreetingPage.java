@@ -22,10 +22,15 @@ public class GreetingPage extends PageBase{
     public void setBirthday(String birthday) {
         // get input date element by id
         WebElement element = driver.findElement(By.id("inputForm:userBirthday:getdate"));
+        element.clear();
         element.sendKeys(birthday);
     }
 
     public void clickSubmit() {
         driver.findElement(By.id("inputForm:submit")).click();
+    }
+
+    public int getDukesAge() {
+        return Integer.valueOf(driver.findElement(By.id("inputForm:dukesAge")).getText());
     }
 }

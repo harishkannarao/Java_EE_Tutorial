@@ -23,7 +23,8 @@
                 <h:outputText value="#{bundle.Welcome}"/>
             </h2>
             <h:outputText value="#{bundle.DukeIs} "/>
-            <h:outputText value="#{dukesBDay.age} #{bundle.YearsOldToday}"/>
+            <h:outputText id="dukesAge" value="#{dukesBDay.age}"/>
+            <h:outputText value=" #{bundle.YearsOldToday}"/>
             <p/>
             <h:outputText value="#{bundle.Instructions}"/>
             <p/>
