@@ -257,6 +257,13 @@
                 <scope>test</scope>
             </dependency>
 
+            <dependency>
+                <groupId>com.mycompany</groupId>
+                <artifactId>weld-junit-support</artifactId>
+                <version>${project.version}</version>
+                <scope>test</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>qa-test-parent</artifactId>
+        <artifactId>dev-app-parent</artifactId>
         <groupId>com.mycompany</groupId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../qa-test-parent/pom.xml</relativePath>
+        <relativePath>../dev-app-parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>firstcup-war-functional-test</artifactId>
+    <artifactId>weld-junit-support</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
 
@@ -19,11 +19,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <configuration>
-                    <systemPropertyVariables>
-                        <appServerUrl>${appServerUrl}</appServerUrl>
-                    </systemPropertyVariables>
-                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -31,7 +26,7 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <skip>${skipFunctionalTest}</skip>
+                            <skip>${skipUnitTest}</skip>
                         </configuration>
                     </execution>
                 </executions>
@@ -41,9 +36,15 @@
     
     <dependencies>
         <dependency>
-            <groupId>com.mycompany</groupId>
-            <artifactId>weld-junit-support</artifactId>
-            <scope>test</scope>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.weld.se</groupId>
+            <artifactId>weld-se</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
