@@ -1,4 +1,4 @@
-package firstcup.bdd.runner;
+package firstcup.bdd.feature.greeting;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
