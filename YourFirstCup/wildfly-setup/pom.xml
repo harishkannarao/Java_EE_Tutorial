@@ -13,7 +13,7 @@
     <name>${project.artifactId}</name>
 
     <properties>
-        <wildfly.extract.dirName>wildfly-8.1.0.Final</wildfly.extract.dirName>
+        <wildfly.extract.dirName>wildfly-8.2.0.Final</wildfly.extract.dirName>
         <wildfly.home>${project.build.directory}/${wildfly.extract.dirName}</wildfly.home>
         <wildfly.server>${wildfly.home}/standalone</wildfly.server>
         <wildfly.deployments>${wildfly.server}/deployments</wildfly.deployments>
@@ -41,7 +41,7 @@
                                 <artifactItem>
                                     <groupId>org.wildfly</groupId>
                                     <artifactId>wildfly-dist</artifactId>
-                                    <version>8.1.0.Final</version>
+                                    <version>8.2.0.Final</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
