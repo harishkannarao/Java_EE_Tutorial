@@ -4,9 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>your-first-cup</artifactId>
+        <artifactId>qa-test-parent</artifactId>
         <groupId>com.mycompany</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../qa-test-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>firstcup-war-functional-test</artifactId>

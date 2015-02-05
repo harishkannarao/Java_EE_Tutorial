@@ -4,9 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>your-first-cup</artifactId>
+        <artifactId>dev-app-parent</artifactId>
         <groupId>com.mycompany</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../dev-app-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>dukes-age</artifactId>

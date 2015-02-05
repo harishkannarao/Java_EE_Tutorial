@@ -10,11 +10,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>dukes-age</module>
-        <module>firstcup-war</module>
-        <module>wildfly-setup</module>
-        <module>dukes-age-functional-test</module>
-        <module>firstcup-war-functional-test</module>
+        <module>dev-app-parent</module>
+        <module>qa-test-parent</module>
     </modules>
 
     <properties>
