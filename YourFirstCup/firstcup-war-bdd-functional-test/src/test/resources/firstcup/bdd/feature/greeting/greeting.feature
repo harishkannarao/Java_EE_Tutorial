@@ -1,15 +1,20 @@
+@2015.02
+@2015.06
 Feature: Greeting Page
-  
+  @Story123
   Scenario: should display dukes age
     Given I am on greeting page
     Then Dukes age should be displayed
-    
+   
+  @Story123
+  @Story321
   Scenario: should display older message for date 2 years before duke's birthday
     Given I am on greeting page
     When I enter birthday as 05/23/1993
     When I click on submit
     Then Message should be displayed as You are 2 years older than Duke!
 
+  @Story321
   Scenario: should display older message for date 1 year and 1 day before duke's birthday
     Given I am on greeting page
     When I enter birthday as 05/22/1994
