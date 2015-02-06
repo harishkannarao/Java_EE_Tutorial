@@ -15,6 +15,7 @@
 
     <modules>
         <module>../wildfly-setup</module>
+        <module>../webdriver-pages</module>
         <module>../dukes-age-functional-test</module>
         <module>../firstcup-war-functional-test</module>
     </modules>
