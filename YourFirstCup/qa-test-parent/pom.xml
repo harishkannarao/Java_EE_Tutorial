@@ -18,6 +18,7 @@
         <module>../webdriver-pages</module>
         <module>../dukes-age-functional-test</module>
         <module>../firstcup-war-functional-test</module>
+        <module>../firstcup-war-bdd-functional-test</module>
     </modules>
 
     <dependencies>
