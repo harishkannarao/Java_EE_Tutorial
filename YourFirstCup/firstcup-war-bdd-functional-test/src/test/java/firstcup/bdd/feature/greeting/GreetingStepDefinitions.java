@@ -15,8 +15,6 @@ import static org.junit.Assert.assertEquals;
 public class GreetingStepDefinitions {
     @Inject
     private GreetingPage greetingPage;
-    @Inject
-    private ResponsePage responsePage;
 
     @Given("^I am on greeting page$")
     public void i_am_on_greeting_page() throws Throwable{
@@ -37,12 +35,6 @@ public class GreetingStepDefinitions {
     @When("^I click on submit$")
     public void i_click_on_submit() throws Throwable {
         greetingPage.clickSubmit();
-    }
-    
-    @Then("^Message should be displayed as (.*)$")
-    public void message_should_be_displayed_as(String expectedMessage) throws Throwable{
-        String actualMessage = responsePage.getAgeDifferenceMessage();
-        assertEquals(expectedMessage, actualMessage);
     }
 
     private int expectedDukesAge() {
