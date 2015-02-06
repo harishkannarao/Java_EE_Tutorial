@@ -1,4 +1,4 @@
-package firstcup.bdd.feature.greeting;
+package firstcup.bdd.runner;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
@@ -8,9 +8,11 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         strict = true,
         format = {
-                "pretty","json:target/Cucumber.json", 
+                "pretty","json:target/Cucumber.json",
                 "html:target/cucumber-html-report"
-        }
+        },
+        features="src/test/resources",
+        glue = "firstcup.bdd"
 )
-public class RunGreetingTest {
+public class RunCucumberTest {
 }

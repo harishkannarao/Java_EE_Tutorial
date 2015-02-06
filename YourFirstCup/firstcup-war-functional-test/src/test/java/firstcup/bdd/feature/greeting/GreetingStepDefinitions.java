@@ -7,7 +7,6 @@ import firstcup.page.GreetingPage;
 import firstcup.page.ResponsePage;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
