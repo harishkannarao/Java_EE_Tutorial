@@ -1,3 +1,8 @@
+This project is tested with the following tools and version
+---
+* Oracle JDK 8, build version 1.8.0_31
+* Apache Maven 3, build version 3.2.5
+
 How tos:
 ===
 
@@ -5,9 +10,13 @@ Run full build (unit tests, deploy app and functional tests):
 ---
 `mvn clean install`
 
-Html report for tests (both success and failure) will be available in:
+Html report for failsafe maven plugin tests (both success and failure) will be available in:
 ---
 _{projectDirectory}/target/site/failsafe-report.html_
+
+Html report for cucumber tests (both success and failure) will be available in:
+---
+_{projectDirectory}/target/cucumber-html-report/index.html_
 
 Run unit tests only:
 ---
