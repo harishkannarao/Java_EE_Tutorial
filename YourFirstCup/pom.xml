@@ -53,6 +53,16 @@
                 <skipFunctionalTest>false</skipFunctionalTest>
             </properties>
         </profile>
+
+        <profile>
+            <id>functional-tests-without-server-startup</id>
+            <properties>
+                <skipUnitTest>true</skipUnitTest>
+                <skipServerSetup>true</skipServerSetup>
+                <skipServerStartup>true</skipServerStartup>
+                <skipFunctionalTest>false</skipFunctionalTest>
+            </properties>
+        </profile>
     </profiles>
 
     <build>

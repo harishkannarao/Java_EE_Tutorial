@@ -22,13 +22,19 @@ Run unit tests only:
 ---
 `mvn clean install -P unit-tests`
 
-Run functional tests only:
+Run functional tests only with server startup:
 ---
 `mvn clean install -P functional-tests`
 
 **To run webdriver to firefox browser**
 
 `mvn clean install -P functional-tests -Ddriver=firefox`
+
+Run functional tests only without server startup:
+---
+`mvn clean install -P deploy-apps`
+
+`mvn install -P functional-tests`
 
 Deploy app and start server:
 ---
