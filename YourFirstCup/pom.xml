@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>weld-junit-support</module>
+        <module>common-parent</module>
         <module>dev-app-parent</module>
         <module>qa-test-parent</module>
     </modules>
