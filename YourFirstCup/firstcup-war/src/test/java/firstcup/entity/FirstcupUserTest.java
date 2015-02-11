@@ -33,7 +33,7 @@ public class FirstcupUserTest {
     public void shouldBeAbleToSaveAndLoad_FirstCupUserEntity() throws Exception{
         // given
         String bDay = "10/09/1985";
-        Date date = sdf.parse("10/09/1985");
+        Date date = sdf.parse(bDay);
         Calendar cal = new GregorianCalendar();
         cal.setTime(date);
         FirstcupUser firstcupUser = new FirstcupUser(date, 3);
@@ -49,6 +49,24 @@ public class FirstcupUserTest {
         FirstcupUser persitedFirstcupUser = em.find(FirstcupUser.class, generatedId);
         assertEquals(cal, persitedFirstcupUser.getBirthday());
         assertEquals(3, persitedFirstcupUser.getAgeDifference());
+    }
+    
+    @Test
+    public void findAverageAgeDifferenceOfAllFirstcupUsers_shouldCalculateAverageAgeDifference() throws Exception {
+        // given
+        tx.begin();
+        em.createQuery("DELETE FROM FirstcupUser").executeUpdate();
+
+        // when
+        FirstcupUser user1 = new FirstcupUser(sdf.parse("10/09/1985"), 3);
+        FirstcupUser user2 = new FirstcupUser(sdf.parse("10/09/1988"), 6);
+        em.persist(user1);
+        em.persist(user2);
+        tx.commit();
+        
+        // then
+        Double actualAverage = (Double) em.createNamedQuery("findAverageAgeDifferenceOfAllFirstcupUsers").getSingleResult();
+        assertEquals(new Double(4.5), actualAverage);
     }
 
 }
