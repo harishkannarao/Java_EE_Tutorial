@@ -1,13 +1,13 @@
 package firstcup.entity;
 
-import org.junit.After;
+import firstcup.runner.WeldJUnit4Runner;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,24 +16,19 @@ import java.util.GregorianCalendar;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+@RunWith(WeldJUnit4Runner.class)
 public class FirstcupUserTest {
-    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("firstcupPUTest");
+    @Inject
     private EntityManager em;
     private EntityTransaction tx;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
 
     @Before
-    public void initEntityManager() throws Exception {
-        em = emf.createEntityManager();
+    public void initTransaction() throws Exception {
         tx = em.getTransaction();
     }
-    
-    @After
-    public void closeEntityManager() throws Exception {
-        if (em != null) em.close();
-    }
-    
+
     @Test
     public void shouldBeAbleToSaveAndLoad_FirstCupUserEntity() throws Exception{
         // given

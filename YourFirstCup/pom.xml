@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>weld-junit-support</module>
         <module>dev-app-parent</module>
         <module>qa-test-parent</module>
     </modules>
@@ -226,6 +227,13 @@
             </dependency>
 
             <dependency>
+                <groupId>org.jboss</groupId>
+                <artifactId>jandex</artifactId>
+                <version>1.2.1.Final</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>4.3.7.Final</version>
@@ -302,20 +310,6 @@
                 <scope>test</scope>
             </dependency>
 
-            <dependency>
-                <groupId>tomcat</groupId>
-                <artifactId>naming-factory</artifactId>
-                <version>5.5.23</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>tomcat</groupId>
-                <artifactId>naming-resources</artifactId>
-                <version>5.5.23</version>
-                <scope>test</scope>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -329,6 +323,12 @@
         <dependency>
             <groupId>org.jboss.weld.se</groupId>
             <artifactId>weld-se</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss</groupId>
+            <artifactId>jandex</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
