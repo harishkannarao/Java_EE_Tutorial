@@ -23,9 +23,9 @@ package firstcup.sql.runner;
 
 import java.io.IOException;
 import java.io.LineNumberReader;
-import java.io.PrintWriter;
 import java.io.Reader;
 import java.sql.*;
+import java.util.logging.Logger;
 
 /**
  * Tool to run database scripts
@@ -39,8 +39,7 @@ public class ScriptRunner {
     private boolean stopOnError;
     private boolean autoCommit;
 
-    private PrintWriter logWriter = new PrintWriter(System.out);
-    private PrintWriter errorLogWriter = new PrintWriter(System.err);
+   private final static Logger LOGGER = Logger.getLogger(ScriptRunner.class.getName());
 
     private String delimiter = DEFAULT_DELIMITER;
     private boolean fullLineDelimiter = false;
@@ -48,7 +47,8 @@ public class ScriptRunner {
     /**
      * Default constructor
      */
-    public ScriptRunner(Connection connection, boolean autoCommit,
+    public ScriptRunner(Connection connection, 
+                        boolean autoCommit,
                         boolean stopOnError) {
         this.connection = connection;
         this.autoCommit = autoCommit;
@@ -58,26 +58,6 @@ public class ScriptRunner {
     public void setDelimiter(String delimiter, boolean fullLineDelimiter) {
         this.delimiter = delimiter;
         this.fullLineDelimiter = fullLineDelimiter;
-    }
-
-    /**
-     * Setter for logWriter property
-     *
-     * @param logWriter
-     *            - the new value of the logWriter property
-     */
-    public void setLogWriter(PrintWriter logWriter) {
-        this.logWriter = logWriter;
-    }
-
-    /**
-     * Setter for errorLogWriter property
-     *
-     * @param errorLogWriter
-     *            - the new value of the errorLogWriter property
-     */
-    public void setErrorLogWriter(PrintWriter errorLogWriter) {
-        this.errorLogWriter = errorLogWriter;
     }
 
     /**
@@ -97,9 +77,7 @@ public class ScriptRunner {
             } finally {
                 connection.setAutoCommit(originalAutoCommit);
             }
-        } catch (IOException e) {
-            throw e;
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             throw e;
         } catch (Exception e) {
             throw new RuntimeException("Error running script.  Cause: " + e, e);
@@ -147,7 +125,7 @@ public class ScriptRunner {
                     command.append(" ");
                     Statement statement = conn.createStatement();
 
-                    println(command);
+                    println(command.toString());
 
                     boolean hasResults = false;
                     if (stopOnError) {
@@ -158,7 +136,7 @@ public class ScriptRunner {
                         } catch (SQLException e) {
                             e.fillInStackTrace();
                             printlnError("Error executing: " + command);
-                            printlnError(e);
+                            printlnError(e.getMessage());
                         }
                     }
 
@@ -199,19 +177,13 @@ public class ScriptRunner {
             if (!autoCommit) {
                 conn.commit();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.fillInStackTrace();
             printlnError("Error executing: " + command);
-            printlnError(e);
-            throw e;
-        } catch (IOException e) {
-            e.fillInStackTrace();
-            printlnError("Error executing: " + command);
-            printlnError(e);
+            printlnError(e.getMessage());
             throw e;
         } finally {
             conn.rollback();
-            flush();
         }
     }
 
@@ -219,30 +191,15 @@ public class ScriptRunner {
         return delimiter;
     }
 
-    private void print(Object o) {
-        if (logWriter != null) {
-            System.out.print(o);
-        }
+    private void print(String msg) {
+        LOGGER.info(msg);
     }
 
-    private void println(Object o) {
-        if (logWriter != null) {
-            logWriter.println(o);
-        }
+    private void println(String msg) {
+        LOGGER.info(msg);
     }
 
-    private void printlnError(Object o) {
-        if (errorLogWriter != null) {
-            errorLogWriter.println(o);
-        }
-    }
-
-    private void flush() {
-        if (logWriter != null) {
-            logWriter.flush();
-        }
-        if (errorLogWriter != null) {
-            errorLogWriter.flush();
-        }
+    private void printlnError(String msg) {
+        LOGGER.severe(msg);
     }
 }
