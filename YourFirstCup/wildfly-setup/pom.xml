@@ -99,6 +99,31 @@
                             <overWriteSnapshots>true</overWriteSnapshots>
                         </configuration>
                     </execution>
+
+                    <execution>
+                        <id>copy-db-test-support-war</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skipServerSetup}</skip>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.mycompany</groupId>
+                                    <artifactId>db-test-support-war</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>war</type>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>db-test-support-war.war</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${wildfly.deployments}</outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                        </configuration>
+                    </execution>
+                    
                 </executions>
             </plugin>
 
