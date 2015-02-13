@@ -16,6 +16,5 @@
     
     <modules>
         <module>../weld-junit-support</module>
-        <module>../db-fixtures-jar</module>
     </modules>
 </project>

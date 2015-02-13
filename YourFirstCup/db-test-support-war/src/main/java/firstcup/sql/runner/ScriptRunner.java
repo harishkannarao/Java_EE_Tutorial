@@ -92,9 +92,9 @@ public class ScriptRunner {
      *            - the connection to use for the script
      * @param reader
      *            - the source of the script
-     * @throws SQLException
+     * @throws java.sql.SQLException
      *             if any SQL errors occur
-     * @throws IOException
+     * @throws java.io.IOException
      *             if there is an error reading from the Reader
      */
     private void runScript(Connection conn, Reader reader) throws IOException,

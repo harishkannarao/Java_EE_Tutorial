@@ -2,7 +2,10 @@ package firstcup.sql.util;
 
 import firstcup.sql.runner.ScriptRunner;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.Reader;
 import java.sql.Connection;
 
 public class DbFixtures {
