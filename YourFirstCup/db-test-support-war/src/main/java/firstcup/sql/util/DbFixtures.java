@@ -4,23 +4,24 @@ import firstcup.sql.runner.ScriptRunner;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
 import java.sql.Connection;
 
 public class DbFixtures {
     
-    private static final String DELETE_SQL_FILE = "db_scripts/delete.sql";
-    private static final String CREATE_SQL_FILE = "db_scripts/create.sql";
-    private static final String INSERT_SQL_FILE = "db_scripts/insert.sql";
-    private final ScriptRunner scriptRunner = new ScriptRunner(true, true);
+    private static final String DELETE_SQL_FILE = "/db_scripts/delete.sql";
+    private static final String CREATE_SQL_FILE = "/db_scripts/create.sql";
+    private static final String INSERT_SQL_FILE = "/db_scripts/insert.sql";
+    private final ScriptRunner scriptRunner = new ScriptRunner(false, true);
 
     @Resource(name="java:jboss/datasources/FirstCupDS")
     private DataSource dataSource;
 
-
+    public void createDbFixtures() throws Exception {
+        createDbObjects();
+        insertDbFixtures();
+    }
+    
     public void resetDbFixtures() throws Exception {
         clearDbFixtures();
         createDbObjects();
@@ -42,11 +43,11 @@ public class DbFixtures {
     }
 
     private void runSqlScript(String sqlFile) throws Exception {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(sqlFile).getFile());
-        Reader reader = new BufferedReader(new FileReader(file));
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(sqlFile);
+        Reader reader = new BufferedReader(new InputStreamReader(inputStream));
         try(Connection connection = dataSource.getConnection()) {
             scriptRunner.runScript(connection, reader);
+//            connection.commit();
         }
 
     }
