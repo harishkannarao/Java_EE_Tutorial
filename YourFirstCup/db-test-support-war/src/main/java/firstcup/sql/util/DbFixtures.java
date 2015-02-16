@@ -2,6 +2,8 @@ package firstcup.sql.util;
 
 import firstcup.sql.runner.ScriptRunner;
 
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,6 +16,9 @@ public class DbFixtures {
     private static final String CREATE_SQL_FILE = "db_scripts/create.sql";
     private static final String INSERT_SQL_FILE = "db_scripts/insert.sql";
     private final ScriptRunner scriptRunner = new ScriptRunner(true, true);
+
+    @Resource(name="java:jboss/datasources/FirstCupDS")
+    private DataSource dataSource;
 
 
     public void resetDbFixtures() throws Exception {
@@ -40,8 +45,9 @@ public class DbFixtures {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource(sqlFile).getFile());
         Reader reader = new BufferedReader(new FileReader(file));
-        Connection connection = null;
-        scriptRunner.runScript(connection, reader);
-        
+        try(Connection connection = dataSource.getConnection()) {
+            scriptRunner.runScript(connection, reader);
+        }
+
     }
 }
