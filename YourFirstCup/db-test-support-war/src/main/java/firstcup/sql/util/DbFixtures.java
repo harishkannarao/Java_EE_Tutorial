@@ -13,11 +13,8 @@ public class DbFixtures {
     private static final String DELETE_SQL_FILE = "db_scripts/delete.sql";
     private static final String CREATE_SQL_FILE = "db_scripts/create.sql";
     private static final String INSERT_SQL_FILE = "db_scripts/insert.sql";
-    private final ScriptRunner scriptRunner;
-    
-    public DbFixtures(Connection connection) {
-        scriptRunner = new ScriptRunner(connection, true, true);
-    }
+    private final ScriptRunner scriptRunner = new ScriptRunner(true, true);
+
 
     public void resetDbFixtures() throws Exception {
         clearDbFixtures();
@@ -43,7 +40,8 @@ public class DbFixtures {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource(sqlFile).getFile());
         Reader reader = new BufferedReader(new FileReader(file));
-        scriptRunner.runScript(reader);
+        Connection connection = null;
+        scriptRunner.runScript(connection, reader);
         
     }
 }

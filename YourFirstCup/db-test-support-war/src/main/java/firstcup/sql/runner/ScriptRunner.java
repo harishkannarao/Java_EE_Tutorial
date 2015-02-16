@@ -34,8 +34,6 @@ public class ScriptRunner {
 
     private static final String DEFAULT_DELIMITER = ";";
 
-    private Connection connection;
-
     private boolean stopOnError;
     private boolean autoCommit;
 
@@ -47,10 +45,8 @@ public class ScriptRunner {
     /**
      * Default constructor
      */
-    public ScriptRunner(Connection connection, 
-                        boolean autoCommit,
+    public ScriptRunner(boolean autoCommit,
                         boolean stopOnError) {
-        this.connection = connection;
         this.autoCommit = autoCommit;
         this.stopOnError = stopOnError;
     }
@@ -66,14 +62,14 @@ public class ScriptRunner {
      * @param reader
      *            - the source of the script
      */
-    public void runScript(Reader reader) throws IOException, SQLException {
+    public void runScript(Connection connection, Reader reader) throws IOException, SQLException {
         try {
             boolean originalAutoCommit = connection.getAutoCommit();
             try {
                 if (originalAutoCommit != this.autoCommit) {
                     connection.setAutoCommit(this.autoCommit);
                 }
-                runScript(connection, reader);
+                executeScript(connection, reader);
             } finally {
                 connection.setAutoCommit(originalAutoCommit);
             }
@@ -97,7 +93,7 @@ public class ScriptRunner {
      * @throws java.io.IOException
      *             if there is an error reading from the Reader
      */
-    private void runScript(Connection conn, Reader reader) throws IOException,
+    private void executeScript(Connection conn, Reader reader) throws IOException,
             SQLException {
         StringBuffer command = null;
         try {
