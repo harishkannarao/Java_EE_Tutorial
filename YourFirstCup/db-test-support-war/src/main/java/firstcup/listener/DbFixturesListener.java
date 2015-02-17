@@ -15,7 +15,7 @@ public class DbFixturesListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {
-            dbFixtures.createDbFixtures();
+//            dbFixtures.createDbFixtures();
         } catch (Exception e) {
             LOGGER.severe(e.getMessage());
             throw new RuntimeException(e);

@@ -47,7 +47,6 @@ public class DbFixtures {
         Reader reader = new BufferedReader(new InputStreamReader(inputStream));
         try(Connection connection = dataSource.getConnection()) {
             scriptRunner.runScript(connection, reader);
-//            connection.commit();
         }
 
     }
