@@ -1,4 +1,4 @@
-package firstcup.sql.resource;
+package firstcup.resource;
 
 import firstcup.sql.util.DbFixtures;
 

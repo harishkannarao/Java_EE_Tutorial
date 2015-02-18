@@ -1,5 +1,6 @@
 package firstcup.sql.util;
 
+import firstcup.constants.JndiConstants;
 import firstcup.sql.runner.ScriptRunner;
 
 import javax.annotation.Resource;
@@ -14,7 +15,7 @@ public class DbFixtures {
     private static final String INSERT_SQL_FILE = "/db_scripts/insert.sql";
     private final ScriptRunner scriptRunner = new ScriptRunner(false, true);
 
-    @Resource(lookup="java:jboss/datasources/FirstCupDS")
+    @Resource(lookup = JndiConstants.FIRSTCUPDS)
     private DataSource dataSource;
 
     public void createDbFixtures() throws Exception {
