@@ -1,3 +1,3 @@
-delete from FirstcupUser;
+delete from FirstcupUserTest;
 
-DROP TABLE FirstcupUser;
+DROP TABLE FirstcupUserTest;

@@ -17,7 +17,7 @@ public class DbFixturesResource {
     @Path("reset")
     @Produces("text/plain")
     public String reset() throws Exception {
-        dbFixtures.clearDbFixtures();
+        dbFixtures.resetDbFixtures();
         return "Success!!!";
     }
 }

@@ -14,7 +14,7 @@ public class DbFixtures {
     private static final String INSERT_SQL_FILE = "/db_scripts/insert.sql";
     private final ScriptRunner scriptRunner = new ScriptRunner(false, true);
 
-    @Resource(name="java:jboss/datasources/FirstCupDS")
+    @Resource(lookup="java:jboss/datasources/FirstCupDS")
     private DataSource dataSource;
 
     public void createDbFixtures() throws Exception {
@@ -31,7 +31,7 @@ public class DbFixtures {
     public void clearDbFixtures() throws Exception {
         runSqlScript(DELETE_SQL_FILE);
     }
-    
+
     public void createDbObjects() throws Exception {
         runSqlScript(CREATE_SQL_FILE);
         
