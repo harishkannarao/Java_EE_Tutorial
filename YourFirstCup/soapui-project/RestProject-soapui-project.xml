@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="RestProject" soapui-version="5.0.0"
+                    xmlns:con="http://eviware.com/soapui/config">
+    <con:settings/>
+    <con:properties/>
+    <con:wssContainer/>
+    <con:oAuth2ProfileContainer/>
+</con:soapui-project>
