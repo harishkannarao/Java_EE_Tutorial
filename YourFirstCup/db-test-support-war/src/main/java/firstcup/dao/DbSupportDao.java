@@ -17,20 +17,16 @@ public class DbSupportDao {
     private static final String AGE_DIFFERENCE_QUERY = "select sum(agedifference) sum_age_difference, count(agedifference)  count_age_difference from firstcupuser";
     
     public AgeDifferenceInfo getAgeDifferenceInfo() throws Exception{
-        
         AgeDifferenceInfo result = new AgeDifferenceInfo();
-        
-        try(
-                Connection con = dataSource.getConnection();
-                Statement statement = con.createStatement()
-        ){
-            ResultSet rs = statement.executeQuery(AGE_DIFFERENCE_QUERY);
-            while (rs.next()) {
-                result.setTotalAgeDifference(rs.getLong("sum_age_difference"));
-                result.setTotalCount(rs.getLong("count_age_difference"));
+        try(Connection con = dataSource.getConnection();
+            Statement statement = con.createStatement()){
+            try(ResultSet rs = statement.executeQuery(AGE_DIFFERENCE_QUERY)){
+                while (rs.next()) {
+                    result.setTotalAgeDifference(rs.getLong("sum_age_difference"));
+                    result.setTotalCount(rs.getLong("count_age_difference"));
+                }
             }
         }
-
         return result;
     }
 }

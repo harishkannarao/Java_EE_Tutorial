@@ -467,8 +467,9 @@
             <inet-address value="${jboss.bind.address.management:127.0.0.1}"/>
         </interface>
         <interface name="public">
-            <!--<inet-address value="${jboss.bind.address:127.0.0.1}"/>-->
-            <!-- Enable traffic from remote ip -->
+            <!-- Original value -->
+            <!-- <inet-address value="${jboss.bind.address:127.0.0.1}"/> -->
+            <!-- Enables traffic from remote ip, enable it with care -->
             <any-ipv4-address/>
         </interface>
         <!-- TODO - only show this if the jacorb subsystem is added  -->
