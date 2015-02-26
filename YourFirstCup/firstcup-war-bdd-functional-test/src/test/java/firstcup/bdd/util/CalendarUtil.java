@@ -1,4 +1,4 @@
-package firstcup.bdd;
+package firstcup.bdd.util;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -11,6 +11,16 @@ public class CalendarUtil {
             age--;
         }
         return age;
+    }
+
+    public int calculateAge(Calendar dateOfBirth) {
+        Calendar now = GregorianCalendar.getInstance();
+        int dukesAge = now.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+        dateOfBirth.add(Calendar.YEAR, dukesAge);
+        if (now.before(dateOfBirth)) {
+            dukesAge--;
+        }
+        return dukesAge;
     }
 
     public Calendar getDukesBirthday() {
