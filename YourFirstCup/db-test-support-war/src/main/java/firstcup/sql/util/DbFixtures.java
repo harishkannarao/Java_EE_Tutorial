@@ -1,9 +1,8 @@
 package firstcup.sql.util;
 
-import firstcup.constants.JndiConstants;
 import firstcup.sql.runner.ScriptRunner;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.io.*;
 import java.sql.Connection;
@@ -11,11 +10,13 @@ import java.sql.Connection;
 public class DbFixtures {
     
     private static final String DELETE_SQL_FILE = "/db_scripts/delete.sql";
+    private static final String DROP_SQL_FILE = "/db_scripts/drop.sql";
     private static final String CREATE_SQL_FILE = "/db_scripts/create.sql";
     private static final String INSERT_SQL_FILE = "/db_scripts/insert.sql";
     private final ScriptRunner scriptRunner = new ScriptRunner(false, true);
 
-    @Resource(lookup = JndiConstants.FIRSTCUPDS)
+    @Inject
+    @DbFixturesDataSource
     private DataSource dataSource;
 
     public void createDbFixtures() throws Exception {
@@ -25,12 +26,18 @@ public class DbFixtures {
     
     public void resetDbFixtures() throws Exception {
         clearDbFixtures();
+        clearDbObjects();
         createDbObjects();
         insertDbFixtures();
     }
     
     public void clearDbFixtures() throws Exception {
         runSqlScript(DELETE_SQL_FILE);
+    }
+    
+    public void clearDbObjects() throws Exception {
+        runSqlScript(DROP_SQL_FILE);
+        
     }
 
     public void createDbObjects() throws Exception {
