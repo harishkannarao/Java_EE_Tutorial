@@ -1,9 +1,7 @@
 package firstcup.entity;
 
-import firstcup.runner.WeldJUnit4Runner;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -16,8 +14,7 @@ import java.util.GregorianCalendar;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-@RunWith(WeldJUnit4Runner.class)
-public class FirstcupUserTest {
+public class FirstcupUserTest extends DbFixturesSupport{
     @Inject
     private EntityManager em;
     private EntityTransaction tx;

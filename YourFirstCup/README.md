@@ -34,7 +34,7 @@ Run functional tests only without server startup:
 ---
 `mvn clean install -P deploy-apps`
 
-`mvn install -P functional-tests`
+`mvn install -P functional-tests-without-server-startup`
 
 Deploy app and start server:
 ---

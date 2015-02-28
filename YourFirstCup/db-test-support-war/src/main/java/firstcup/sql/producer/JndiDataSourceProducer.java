@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import javax.enterprise.inject.Produces;
 import javax.sql.DataSource;
 
-public class DataSourceProducer {
+public class JndiDataSourceProducer {
 
     @Resource(lookup = JndiConstants.FIRSTCUPDS)
     private DataSource dataSource;
