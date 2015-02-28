@@ -324,6 +324,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.mycompany</groupId>
+                <artifactId>db-fixtures-jar</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>${h2.database.version}</version>

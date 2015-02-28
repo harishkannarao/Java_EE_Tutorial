@@ -1,10 +1,11 @@
 package firstcup.sql.util;
 
-import firstcup.sql.runner.ScriptRunner;
-
 import javax.inject.Inject;
 import javax.sql.DataSource;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.sql.Connection;
 
 public class DbFixtures {
