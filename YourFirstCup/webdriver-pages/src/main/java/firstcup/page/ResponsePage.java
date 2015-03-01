@@ -11,7 +11,7 @@ public class ResponsePage extends PageBase{
     private static final String PAGE_URL = "response.xhtml";
     private static final String PAGE_ID = "qa-response";
 
-    private static final Pattern AVERAGE_AGE_DIFF_PATTERN = Pattern.compile("^[\\s\\w]+([-+]?[0-9]*\\.?[0-9]+)\\.$");
+    private static final Pattern AVERAGE_AGE_DIFF_PATTERN = Pattern.compile("^The average age difference of all First Cup users is (.*)\\.$");
 
     @Override
     protected String getPageUrl() {
@@ -41,5 +41,9 @@ public class ResponsePage extends PageBase{
             return Optional.empty();
         }
         
+    }
+
+    public void clickBackButton() {
+        driver.findElement(By.id("response_form:back")).click();
     }
 }

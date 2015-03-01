@@ -1,6 +1,8 @@
 package firstcup.bdd.feature.response;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import firstcup.bdd.model.AgeDifferenceInfo;
 import firstcup.bdd.util.CalendarUtil;
 import firstcup.page.ResponsePage;
@@ -43,7 +45,7 @@ public class ResponseStepDefinitions {
         assertEquals(expectedMessage, actualMessage);
     }
 
-    @Then("^The average age difference should be displayed")
+    @Then("^The average age difference should be displayed$")
     public void The_average_age_difference_should_be_displayed() throws Throwable {
         AgeDifferenceInfo ageDifferenceInfo = getAgeDifferenceFromDb();
         float expectedAverageAgeDifference = Float.valueOf(ageDifferenceInfo.getTotalAgeDifference())/Float.valueOf(ageDifferenceInfo.getTotalCount());
@@ -58,5 +60,18 @@ public class ResponseStepDefinitions {
         WebTarget target
                 = client.target(appUrl + "/" + testSupportContext + "/dbSupport/getAgeDifferenceInfo");
         return target.request().get(AgeDifferenceInfo.class);
+    }
+
+    @Then("^The average age difference should be displayed as (.*)$")
+    public void The_average_age_difference_should_be_displayed_as(float expectedAvgAgeDiff) throws Throwable {
+        Optional<Float> actualAverageAgeDifference = responsePage.getAverageAgeDifference();
+        assertTrue("Should get average age difference", actualAverageAgeDifference.isPresent());
+        assertEquals("Incorrect average age difference", expectedAvgAgeDiff, actualAverageAgeDifference.get().floatValue(), 0.0f);
+
+    }
+
+    @When("^I click back button on response page$")
+    public void I_click_back_button_on_response_page() throws Throwable {
+        responsePage.clickBackButton();
     }
 }

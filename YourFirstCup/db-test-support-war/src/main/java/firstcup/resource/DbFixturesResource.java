@@ -1,6 +1,6 @@
 package firstcup.resource;
 
-import firstcup.sql.util.DbFixtures;
+import firstcup.service.DbFixturesService;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -11,13 +11,13 @@ import javax.ws.rs.Produces;
 public class DbFixturesResource {
     
     @Inject
-    DbFixtures dbFixtures;
+    DbFixturesService dbFixturesService;
 
     @GET
     @Path("reset")
     @Produces("text/plain")
     public String reset() throws Exception {
-        dbFixtures.resetDbFixtures();
+        dbFixturesService.resetDbFixtures();
         return "Success!!!";
     }
 }
