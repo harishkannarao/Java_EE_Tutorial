@@ -16,4 +16,9 @@ public class DbFixturesService {
         dbFixtures.resetDbFixtures();
         dbSupportDao.deleteFirstcupEntries();
     }
+    
+    public void clearDbFixtures() throws Exception {
+        dbFixtures.clearDbFixtures();
+        dbSupportDao.deleteFirstcupEntries();
+    }
 }

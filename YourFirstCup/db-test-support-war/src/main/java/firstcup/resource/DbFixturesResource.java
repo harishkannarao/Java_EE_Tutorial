@@ -20,4 +20,12 @@ public class DbFixturesResource {
         dbFixturesService.resetDbFixtures();
         return "Success!!!";
     }
+
+    @GET
+    @Path("clear")
+    @Produces("text/plain")
+    public String clear() throws Exception {
+        dbFixturesService.clearDbFixtures();
+        return "Success!!!";
+    }
 }

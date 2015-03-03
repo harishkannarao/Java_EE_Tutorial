@@ -27,6 +27,11 @@ public class DbFixtures {
     
     public void resetDbFixtures() throws Exception {
         clearDbFixtures();
+        insertDbFixtures();
+    }
+
+    public void resetDatabase() throws Exception {
+        clearDbFixtures();
         clearDbObjects();
         createDbObjects();
         insertDbFixtures();
