@@ -1,10 +1,9 @@
 package firstcup.dao;
 
 
-import firstcup.constants.JndiConstants;
 import firstcup.model.AgeDifferenceInfo;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,7 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DbSupportDao {
-    @Resource(lookup = JndiConstants.FIRSTCUPDS)
+    @Inject
     private DataSource dataSource;
     
     private static final String AGE_DIFFERENCE_QUERY = "select sum(agedifference) sum_age_difference, count(agedifference)  count_age_difference from firstcupuser";
