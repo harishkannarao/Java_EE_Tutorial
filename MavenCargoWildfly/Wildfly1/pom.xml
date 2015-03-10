@@ -21,8 +21,8 @@
         <wildfly.deployments>${wildfly.server}/deployments</wildfly.deployments>
         <wildfly.configuration>${wildfly.server}/configuration</wildfly.configuration>
         <wildfly.log>${wildfly.server}/log</wildfly.log>
-        <!--<wildfly1.servlet.port>8080</wildfly1.servlet.port>-->
         <wildfly1.debug.port>8787</wildfly1.debug.port>
+        <wildfly1.management.port>9990</wildfly1.management.port>
         <wildfly1.port.offset>0</wildfly1.port.offset>
     </properties>
 
@@ -96,8 +96,9 @@
                                         -Xms64M
                                         -Xmx5124M
                                         -XX:MaxPermSize=128M
-                                        -Djboss.socket.binding.port-offset=${wildfly1.port.offset}
                                     </cargo.jvmargs>
+                                    <!--<cargo.port.offset>${wildfly1.port.offset}</cargo.port.offset>-->
+                                    <!--<cargo.jboss.management-http.port>${wildfly1.management.port}</cargo.jboss.management-http.port>-->
                                 </properties>
                             </configuration>
                         </configuration>
@@ -114,10 +115,10 @@
                                         -Xms64M
                                         -Xmx5124M
                                         -XX:MaxPermSize=128M
-                                        -Djboss.socket.binding.port-offset=${wildfly1.port.offset}
                                         -agentlib:jdwp=transport=dt_socket,address=${wildfly1.debug.port},server=y,suspend=n
                                     </cargo.jvmargs>
-                                    <!--<cargo.servlet.port>9080</cargo.servlet.port>-->
+                                    <!--<cargo.port.offset>${wildfly1.port.offset}</cargo.port.offset>-->
+                                    <!--<cargo.jboss.management-http.port>${wildfly1.management.port}</cargo.jboss.management-http.port>-->
                                 </properties>
                             </configuration>
                         </configuration>
@@ -133,9 +134,11 @@
                     <configuration>
                         <type>existing</type>
                         <home>${wildfly.server}</home>
-<!--                        <properties>
-                            <cargo.servlet.port>9080</cargo.servlet.port>
-                        </properties>-->
+                        <properties>
+                            <!--<cargo.jboss.configuration>standalone-full</cargo.jboss.configuration>-->
+                            <cargo.port.offset>${wildfly1.port.offset}</cargo.port.offset>
+                            <cargo.jboss.management-http.port>${wildfly1.management.port}</cargo.jboss.management-http.port>
+                        </properties>
                     </configuration>
                 </configuration>
             </plugin>
