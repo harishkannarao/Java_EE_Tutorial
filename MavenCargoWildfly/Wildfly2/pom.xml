@@ -21,8 +21,8 @@
         <wildfly.deployments>${wildfly.server}/deployments</wildfly.deployments>
         <wildfly.configuration>${wildfly.server}/configuration</wildfly.configuration>
         <wildfly.log>${wildfly.server}/log</wildfly.log>
-        <!--<wildfly1.servlet.port>8080</wildfly1.servlet.port>-->
-        <wildfly2.debug.port>9787</wildfly2.debug.port>
+        <!--<wildfly2.debug.param>-agentlib:jdwp=transport=dt_socket,address=9787,server=y,suspend=n</wildfly2.debug.param>-->
+        <wildfly2.debug.param/>
         <wildfly2.port.offset>1000</wildfly2.port.offset>
         <wildfly2.port.management>10990</wildfly2.port.management>
     </properties>
@@ -131,6 +131,20 @@
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
+                <configuration>
+                    <jbossHome>${wildfly.home}</jbossHome>
+                    <serverConfig>standalone-full.xml</serverConfig>
+                    <serverArgs>
+                        <serverArg>-Djboss.socket.binding.port-offset=${wildfly2.port.offset}</serverArg>
+                    </serverArgs>
+                    <javaOpts>
+                        <javaOpt>-Xms64M</javaOpt>
+                        <javaOpt>-Xmx5124M</javaOpt>
+                        <javaOpt>-XX:MaxPermSize=128M</javaOpt>
+                        <javaOpt>${wildfly2.debug.param}</javaOpt>
+                    </javaOpts>
+                    <port>${wildfly2.port.management}</port>
+                </configuration>
                 <executions>
                     <execution>
                         <id>start-wildfly</id>
@@ -138,20 +152,6 @@
                         <goals>
                             <goal>start</goal>
                         </goals>
-                        <configuration>
-                            <jbossHome>${wildfly.home}</jbossHome>
-                            <serverConfig>standalone-full.xml</serverConfig>
-                            <serverArgs>
-                                <serverArg>-Djboss.socket.binding.port-offset=${wildfly2.port.offset}</serverArg>
-                            </serverArgs>
-                            <javaOpts>
-                                <javaOpt>-Xms64M</javaOpt>
-                                <javaOpt>-Xmx5124M</javaOpt>
-                                <javaOpt>-XX:MaxPermSize=128M</javaOpt>
-                                <javaOpt>-agentlib:jdwp=transport=dt_socket,address=${wildfly2.debug.port},server=y,suspend=n</javaOpt>
-                            </javaOpts>
-                            <port>${wildfly2.port.management}</port>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
