@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>wildfly2</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <wildfly.extract.dirName>wildfly-8.2.0.Final</wildfly.extract.dirName>
