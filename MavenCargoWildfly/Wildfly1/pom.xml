@@ -69,7 +69,7 @@
                         <configuration>
                             <target name="delete default wildfly configuration files">
                                 <delete>
-                                    <fileset dir="${wildfly.configuration}" includes="standalone-full.xml" />
+                                    <fileset dir="${wildfly.configuration}" includes="standalone.xml" />
                                     <fileset dir="${wildfly.configuration}" includes="standalone-full-ha.xml" />
                                     <fileset dir="${wildfly.configuration}" includes="standalone-ha.xml" />
                                 </delete>
@@ -135,7 +135,7 @@
                         <type>existing</type>
                         <home>${wildfly.server}</home>
                         <properties>
-                            <!--<cargo.jboss.configuration>standalone-full</cargo.jboss.configuration>-->
+                            <cargo.jboss.configuration>standalone-full</cargo.jboss.configuration>
                             <cargo.port.offset>${wildfly1.port.offset}</cargo.port.offset>
                             <cargo.jboss.management-http.port>${wildfly1.management.port}</cargo.jboss.management-http.port>
                         </properties>
