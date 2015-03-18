@@ -25,6 +25,7 @@
         <wildfly2.debug.param/>
         <wildfly2.port.offset>1000</wildfly2.port.offset>
         <wildfly2.port.management>10990</wildfly2.port.management>
+        <wildfly.goal>start</wildfly.goal>
     </properties>
 
     <build>
@@ -110,7 +111,7 @@
                         <id>start-wildfly</id>
                         <phase>pre-integration-test</phase>
                         <goals>
-                            <goal>start</goal>
+                            <goal>${wildfly.goal}</goal>
                         </goals>
                     </execution>
                 </executions>
