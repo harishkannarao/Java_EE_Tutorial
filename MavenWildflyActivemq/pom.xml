@@ -12,6 +12,7 @@
     <modules>
         <module>WildflyCargo</module>
         <module>Wildfly</module>
+        <module>Activemq</module>
     </modules>
 
     <build>
@@ -63,6 +64,12 @@
                     <groupId>org.wildfly.plugins</groupId>
                     <artifactId>wildfly-maven-plugin</artifactId>
                     <version>1.1.0.Alpha1</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.activemq.tooling</groupId>
+                    <artifactId>activemq-maven-plugin</artifactId>
+                    <version>5.10.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
