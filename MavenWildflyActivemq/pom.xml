@@ -10,9 +10,9 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>Activemq</module>
         <module>WildflyCargo</module>
         <module>Wildfly</module>
-        <module>Activemq</module>
     </modules>
 
     <build>

@@ -24,6 +24,15 @@
                 <configuration>
                     <fork>${activemq.fork}</fork>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>start-active-mq</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
