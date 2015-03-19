@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>maven.wildfly.activemq</groupId>
+        <artifactId>maven-wildfly-activemq</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>WildflyCargo</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <wildfly.extract.dirName>wildfly-8.2.0.Final</wildfly.extract.dirName>
+        <wildfly.home>${project.build.directory}/${wildfly.extract.dirName}</wildfly.home>
+        <wildfly.server>${wildfly.home}/standalone</wildfly.server>
+        <wildfly.deployments>${wildfly.server}/deployments</wildfly.deployments>
+        <wildfly.configuration>${wildfly.server}/configuration</wildfly.configuration>
+        <wildfly.log>${wildfly.server}/log</wildfly.log>
+        <wildfly1.http.port>8080</wildfly1.http.port>
+        <wildfly1.management.port>9990</wildfly1.management.port>
+        <wildfly1.port.offset>0</wildfly1.port.offset>
+        <wildfly1.debug.param/>
+        <cargo.goal>start</cargo.goal>
+    </properties>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-wildfly</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.wildfly</groupId>
+                                    <artifactId>wildfly-dist</artifactId>
+                                    <version>8.2.0.Final</version>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <destFileName>${wildfly.extract.dirName}</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>delete-wildfly-standalone-configurations</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="delete default wildfly configuration files">
+                                <delete>
+                                    <fileset dir="${wildfly.configuration}" includes="standalone.xml" />
+                                    <fileset dir="${wildfly.configuration}" includes="standalone-full-ha.xml" />
+                                    <fileset dir="${wildfly.configuration}" includes="standalone-ha.xml" />
+                                </delete>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>start-wildfly</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>${cargo.goal}</goal>
+                        </goals>
+                    </execution>
+                 </executions>
+                <configuration>
+                    <container>
+                        <containerId>wildfly8x</containerId>
+                        <home>${wildfly.home}</home>
+                        <timeout>400000</timeout>
+                        <output>${wildfly.log}/maven_cargo.log</output>
+                    </container>
+                    <configuration>
+                        <type>existing</type>
+                        <home>${wildfly.server}</home>
+                        <properties>
+                            <cargo.jvmargs>
+                                -Xms64M
+                                -Xmx5124M
+                                -XX:MaxPermSize=128M
+                                -Djboss.socket.binding.port-offset=${wildfly1.port.offset}
+                                ${wildfly1.debug.param}
+                            </cargo.jvmargs>
+                            <cargo.jboss.configuration>standalone-full</cargo.jboss.configuration>
+                            <cargo.servlet.port>${wildfly1.http.port}</cargo.servlet.port>
+                            <cargo.jboss.management-http.port>${wildfly1.management.port}</cargo.jboss.management-http.port>
+                        </properties>
+                    </configuration>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>

@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>maven.cargo.wildfly</groupId>
-    <artifactId>maven-cargo-wildfly</artifactId>
+    <groupId>maven.wildfly.activemq</groupId>
+    <artifactId>maven-wildfly-activemq</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>Wildfly1</module>
-        <module>Wildfly2</module>
+        <module>WildflyCargo</module>
+        <module>Wildfly</module>
     </modules>
 
     <build>
@@ -48,15 +48,15 @@
                 </plugin>
 
                 <plugin>
-                    <groupId>org.codehaus.cargo</groupId>
-                    <artifactId>cargo-maven2-plugin</artifactId>
-                    <version>1.4.7</version>
-                </plugin>
-
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>1.7</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.cargo</groupId>
+                    <artifactId>cargo-maven2-plugin</artifactId>
+                    <version>1.4.13</version>
                 </plugin>
 
                 <plugin>
