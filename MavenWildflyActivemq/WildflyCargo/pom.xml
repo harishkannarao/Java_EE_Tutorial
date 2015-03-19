@@ -72,9 +72,22 @@
                             <target name="delete default wildfly configuration files">
                                 <delete>
                                     <fileset dir="${wildfly.configuration}" includes="standalone.xml" />
+                                    <fileset dir="${wildfly.configuration}" includes="standalone-full.xml" />
                                     <fileset dir="${wildfly.configuration}" includes="standalone-full-ha.xml" />
                                     <fileset dir="${wildfly.configuration}" includes="standalone-ha.xml" />
                                 </delete>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-custom-wildfly-standalone-full-configurations</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="copy wildfly configuration files">
+                                <copy file="${project.basedir}/configuration/custom-cargo-wildfly-standalone-full.xml" tofile="${wildfly.configuration}/custom-cargo-wildfly-standalone-full.xml" />
                             </target>
                         </configuration>
                     </execution>
@@ -111,7 +124,7 @@
                                 -Djboss.socket.binding.port-offset=${wildfly1.port.offset}
                                 ${wildfly1.debug.param}
                             </cargo.jvmargs>
-                            <cargo.jboss.configuration>standalone-full</cargo.jboss.configuration>
+                            <cargo.jboss.configuration>custom-cargo-wildfly-standalone-full</cargo.jboss.configuration>
                             <cargo.servlet.port>${wildfly1.http.port}</cargo.servlet.port>
                             <cargo.jboss.management-http.port>${wildfly1.management.port}</cargo.jboss.management-http.port>
                         </properties>

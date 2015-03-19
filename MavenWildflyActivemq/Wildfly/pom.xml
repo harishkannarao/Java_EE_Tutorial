@@ -80,9 +80,22 @@
                             <target name="delete default wildfly configuration files">
                                 <delete>
                                     <fileset dir="${wildfly.configuration}" includes="standalone.xml" />
+                                    <fileset dir="${wildfly.configuration}" includes="standalone-full.xml" />
                                     <fileset dir="${wildfly.configuration}" includes="standalone-full-ha.xml" />
                                     <fileset dir="${wildfly.configuration}" includes="standalone-ha.xml" />
                                 </delete>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-custom-wildfly-standalone-full-configurations</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="copy wildfly configuration files">
+                                <copy file="${project.basedir}/configuration/custom-wildfly-standalone-full.xml" tofile="${wildfly.configuration}/custom-wildfly-standalone-full.xml" />
                             </target>
                         </configuration>
                     </execution>
@@ -94,7 +107,7 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <configuration>
                     <jbossHome>${wildfly.home}</jbossHome>
-                    <serverConfig>standalone-full.xml</serverConfig>
+                    <serverConfig>custom-wildfly-standalone-full.xml</serverConfig>
                     <serverArgs>
                         <serverArg>-Djboss.socket.binding.port-offset=${wildfly2.port.offset}</serverArg>
                     </serverArgs>
