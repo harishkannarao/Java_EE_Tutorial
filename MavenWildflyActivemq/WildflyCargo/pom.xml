@@ -119,7 +119,7 @@
                         <properties>
                             <cargo.jvmargs>
                                 -Xms64M
-                                -Xmx5124M
+                                -Xmx512M
                                 -XX:MaxPermSize=128M
                                 -Djboss.socket.binding.port-offset=${wildfly1.port.offset}
                                 ${wildfly1.debug.param}

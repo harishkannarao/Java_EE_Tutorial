@@ -113,7 +113,7 @@
                     </serverArgs>
                     <javaOpts>
                         <javaOpt>-Xms64M</javaOpt>
-                        <javaOpt>-Xmx5124M</javaOpt>
+                        <javaOpt>-Xmx512M</javaOpt>
                         <javaOpt>-XX:MaxPermSize=128M</javaOpt>
                         <javaOpt>${wildfly2.debug.param}</javaOpt>
                     </javaOpts>
