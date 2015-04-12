@@ -146,7 +146,7 @@
                     </security>
                 </datasource>
                 <datasource jta="false" jndi-name="java:jboss/datasources/FirstCupDS" pool-name="FirstCupDS" enabled="true" use-ccm="false">
-                    <connection-url>jdbc:h2:mem:firstcup;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
+                    <connection-url>jdbc:h2:h2_data/firstcup;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
                     <driver-class>org.h2.Driver</driver-class>
                     <driver>h2</driver>
                     <security>
