@@ -16,7 +16,6 @@ public class UnitTestDataSourceProducer {
         dataSource = new JdbcDataSource();
         dataSource.setURL("jdbc:h2:mem:firstcupTest;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
         dataSource.setUser("sa");
-//        dataSource.setPassword("");
     }
 
     @Produces
