@@ -15,122 +15,64 @@
 
     <properties>
         <wildfly.extract.dirName>wildfly-8.2.0.Final</wildfly.extract.dirName>
-        <wildfly.home>${project.build.directory}/${wildfly.extract.dirName}</wildfly.home>
+        <wildfly.home>${project.basedir}/server/${wildfly.extract.dirName}</wildfly.home>
         <wildfly.server>${wildfly.home}/standalone</wildfly.server>
         <wildfly.deployments>${wildfly.server}/deployments</wildfly.deployments>
         <wildfly.configuration>${wildfly.server}/configuration</wildfly.configuration>
         <wildfly.log>${wildfly.server}/log</wildfly.log>
-
+        <skip.wildfly.unpack>false</skip.wildfly.unpack>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>check-wildfly-exists</id>
+            <activation>
+                <file>
+                    <exists>server/wildfly-8.2.0.Final</exists>
+                </file>
+            </activation>
+            <properties>
+                <skip.wildfly.unpack>true</skip.wildfly.unpack>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
 
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
+                <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
+                    <execution>
+                        <id>clear-existing-wildfly</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skip.wildfly.unpack}</skip>
+                            <target name="clear-existing-wildfly">
+                                <delete dir="${wildfly.home}" />
+                            </target>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>unpack-wildfly</id>
                         <phase>pre-integration-test</phase>
                         <goals>
-                            <goal>unpack</goal>
+                            <goal>run</goal>
                         </goals>
                         <configuration>
-                            <skip>${skipServerSetup}</skip>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.wildfly</groupId>
-                                    <artifactId>wildfly-dist</artifactId>
-                                    <version>8.2.0.Final</version>
-                                    <type>zip</type>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}</outputDirectory>
-                                    <destFileName>${wildfly.extract.dirName}</destFileName>
-                                </artifactItem>
-                            </artifactItems>
+                            <skip>${skip.wildfly.unpack}</skip>
+                            <target name="unpack-wildfly">
+                                <dependencyfilesets prefix="mydeps."/>
+                                <unzip dest="${project.basedir}/server" overwrite="false">
+                                    <fileset refid="mydeps.org.wildfly:wildfly-dist:zip" />
+                                </unzip>
+                            </target>
                         </configuration>
                     </execution>
-
-                    <execution>
-                        <id>copy-dukes-age-war</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <skip>${skipServerSetup}</skip>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.mycompany</groupId>
-                                    <artifactId>dukes-age</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>war</type>
-                                    <overWrite>true</overWrite>
-                                    <destFileName>dukes-age.war</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>${wildfly.deployments}</outputDirectory>
-                            <overWriteReleases>true</overWriteReleases>
-                            <overWriteSnapshots>true</overWriteSnapshots>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>copy-firstcup-war</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <skip>${skipServerSetup}</skip>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.mycompany</groupId>
-                                    <artifactId>firstcup-war</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>war</type>
-                                    <overWrite>true</overWrite>
-                                    <destFileName>firstcup-war.war</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>${wildfly.deployments}</outputDirectory>
-                            <overWriteReleases>true</overWriteReleases>
-                            <overWriteSnapshots>true</overWriteSnapshots>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>copy-db-test-support-war</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <skip>${skipServerSetup}</skip>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.mycompany</groupId>
-                                    <artifactId>db-test-support-war</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>war</type>
-                                    <overWrite>true</overWrite>
-                                    <destFileName>db-test-support-war.war</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>${wildfly.deployments}</outputDirectory>
-                            <overWriteReleases>true</overWriteReleases>
-                            <overWriteSnapshots>true</overWriteSnapshots>
-                        </configuration>
-                    </execution>
-                    
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
                     <execution>
                         <id>delete-wildfly-standalone-configurations</id>
                         <phase>pre-integration-test</phase>
@@ -139,7 +81,7 @@
                         </goals>
                         <configuration>
                             <skip>${skipServerSetup}</skip>
-                            <target name="delete default wildfly configuration files">
+                            <target name="delete-wildfly-standalone-configurations">
                                 <delete>
                                     <fileset dir="${wildfly.configuration}" includes="standalone.xml" />
                                     <fileset dir="${wildfly.configuration}" includes="standalone-full.xml" />
@@ -159,6 +101,77 @@
                             <skip>${skipServerSetup}</skip>
                             <target name="copy and rename file wildfly configuration files">
                                 <copy file="${project.basedir}/conf/standalone-full.xml" tofile="${wildfly.configuration}/standalone.xml" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>clear-deployments</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="clear-deployments">
+                                <delete>
+                                    <fileset dir="${wildfly.deployments}" includes="**/*" />
+                                </delete>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>clear-h2-data</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="clear-h2-data">
+                                <delete dir="${wildfly.server}/h2_data" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-dukes-age-war</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="copy-dukes-age-war">
+                                <dependencyfilesets prefix="mydeps."/>
+                                <copy tofile="${wildfly.deployments}/dukes-age.war">
+                                    <fileset refid="mydeps.com.mycompany:dukes-age:war" />
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-firstcup-war</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="copy-firstcup-war">
+                                <dependencyfilesets prefix="mydeps."/>
+                                <copy tofile="${wildfly.deployments}/firstcup-war.war">
+                                    <fileset refid="mydeps.com.mycompany:firstcup-war:war" />
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-db-test-support-war</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="copy-db-test-support-war">
+                                <dependencyfilesets prefix="mydeps."/>
+                                <copy tofile="${wildfly.deployments}/db-test-support-war.war">
+                                    <fileset refid="mydeps.com.mycompany:db-test-support-war:war" />
+                                </copy>
                             </target>
                         </configuration>
                     </execution>
@@ -225,5 +238,36 @@
 
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.wildfly</groupId>
+            <artifactId>wildfly-dist</artifactId>
+            <version>8.2.0.Final</version>
+            <type>zip</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>dukes-age</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>firstcup-war</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>db-test-support-war</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+
+    </dependencies>
 
 </project>
