@@ -1,6 +1,6 @@
 package firstcup.dukesage.resource;
 
-import firstcup.dukesage.TestBase;
+import firstcup.dukesage.CommonBase;
 import org.junit.Test;
 
 import javax.ws.rs.client.Client;
@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 
 import static org.junit.Assert.assertEquals;
 
-public class DukesAgeResourceTest extends TestBase {
+public class DukesAgeResourceIT extends CommonBase {
 
     @Test
     public void resource_shouldReturnDukesAge() {

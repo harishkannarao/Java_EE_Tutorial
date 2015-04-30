@@ -14,7 +14,7 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(WeldJUnit4Runner.class)
-public class GreetingPageTest {
+public class GreetingPageIT {
 
     @Inject
     GreetingPage greetingPage;

@@ -20,8 +20,12 @@
         <skipServerSetup>false</skipServerSetup>
         <skipServerStartup>false</skipServerStartup>
         <skipFunctionalTest>false</skipFunctionalTest>
-        <appServerUrl>http://localhost:8080</appServerUrl>
+        <serverHttpPort>8080</serverHttpPort>
+        <serverManagementPort>9990</serverManagementPort>
+        <serverDebugPort>8787</serverDebugPort>
         <serverPortOffset>0</serverPortOffset>
+        <appServerUrl>http://localhost:${serverHttpPort}</appServerUrl>
+        <cargo.goal>start</cargo.goal>
         
         <java.ee.version>7.0</java.ee.version>
         <junit.version>4.12</junit.version>
@@ -49,27 +53,18 @@
         </profile>
 
         <profile>
-            <id>deploy-apps</id>
+            <id>run-apps</id>
             <properties>
                 <skipUnitTest>true</skipUnitTest>
                 <skipServerSetup>false</skipServerSetup>
-                <skipServerStartup>true</skipServerStartup>
+                <skipServerStartup>false</skipServerStartup>
                 <skipFunctionalTest>true</skipFunctionalTest>
+                <cargo.goal>run</cargo.goal>
             </properties>
         </profile>
 
         <profile>
             <id>functional-tests</id>
-            <properties>
-                <skipUnitTest>true</skipUnitTest>
-                <skipServerSetup>false</skipServerSetup>
-                <skipServerStartup>false</skipServerStartup>
-                <skipFunctionalTest>false</skipFunctionalTest>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>functional-tests-without-server-startup</id>
             <properties>
                 <skipUnitTest>true</skipUnitTest>
                 <skipServerSetup>true</skipServerSetup>
@@ -138,19 +133,19 @@
             </plugin>
 
             <!-- Disabling Surefire Plugin and Failsafe plugin will be used for running test -->
-            <plugin>
+ <!--           <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <skipTests>true</skipTests>
                 </configuration>
-            </plugin>
+            </plugin>-->
 
             <!--
             Failsafe plugin will be used for running test
             Defaults convention user for failsafe plugin and surefire plugin included
             -->
-            <plugin>
+<!--            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <executions>
@@ -171,9 +166,9 @@
                         <include>**/*TestCase.java</include>
                     </includes>
                 </configuration>
-            </plugin>
+            </plugin>-->
 
-            <plugin>
+<!--            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <executions>
@@ -184,7 +179,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
         </plugins>
 
     </build>

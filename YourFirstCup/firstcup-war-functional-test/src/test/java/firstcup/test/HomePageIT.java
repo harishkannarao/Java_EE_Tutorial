@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(WeldJUnit4Runner.class)
-public class HomePageTest {
+public class HomePageIT {
 
     @Inject
     HomePage homePage;

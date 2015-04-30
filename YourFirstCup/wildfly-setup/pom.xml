@@ -100,7 +100,7 @@
                         <configuration>
                             <skip>${skipServerSetup}</skip>
                             <target name="copy and rename file wildfly configuration files">
-                                <copy file="${project.basedir}/conf/standalone-full.xml" tofile="${wildfly.configuration}/standalone.xml" />
+                                <copy file="${project.basedir}/conf/standalone-full.xml" tofile="${wildfly.configuration}/standalone-full.xml" />
                             </target>
                         </configuration>
                     </execution>
@@ -111,6 +111,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
+                            <skip>${skipServerSetup}</skip>
                             <target name="clear-deployments">
                                 <delete>
                                     <fileset dir="${wildfly.deployments}" includes="**/*" />
@@ -125,6 +126,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
+                            <skip>${skipServerSetup}</skip>
                             <target name="clear-h2-data">
                                 <delete dir="${wildfly.server}/h2_data" />
                             </target>
@@ -137,6 +139,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
+                            <skip>${skipServerSetup}</skip>
                             <target name="copy-dukes-age-war">
                                 <dependencyfilesets prefix="mydeps."/>
                                 <copy tofile="${wildfly.deployments}/dukes-age.war">
@@ -152,6 +155,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
+                            <skip>${skipServerSetup}</skip>
                             <target name="copy-firstcup-war">
                                 <dependencyfilesets prefix="mydeps."/>
                                 <copy tofile="${wildfly.deployments}/firstcup-war.war">
@@ -167,6 +171,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
+                            <skip>${skipServerSetup}</skip>
                             <target name="copy-db-test-support-war">
                                 <dependencyfilesets prefix="mydeps."/>
                                 <copy tofile="${wildfly.deployments}/db-test-support-war.war">
@@ -186,7 +191,7 @@
                         <id>start-wildfly</id>
                         <phase>integration-test</phase>
                         <goals>
-                            <goal>start</goal>
+                            <goal>${cargo.goal}</goal>
                         </goals>
                         <configuration>
                             <skip>${skipServerStartup}</skip>
@@ -197,26 +202,11 @@
                                         -Xmx1024M
                                         -XX:MaxPermSize=512M
                                         -Djboss.socket.binding.port-offset=${serverPortOffset}
+                                        -agentlib:jdwp=transport=dt_socket,address=${serverDebugPort},server=y,suspend=n
                                     </cargo.jvmargs>
-                                </properties>
-                            </configuration>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>default-cli</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <configuration>
-                                <properties>
-                                    <cargo.jvmargs>
-                                        -Xms512M
-                                        -Xmx1024M
-                                        -XX:MaxPermSize=512M
-                                        -Djboss.socket.binding.port-offset=${serverPortOffset}
-                                        -agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=n
-                                    </cargo.jvmargs>
+                                    <cargo.jboss.configuration>standalone-full</cargo.jboss.configuration>
+                                    <cargo.servlet.port>${serverHttpPort}</cargo.servlet.port>
+                                    <cargo.jboss.management-http.port>${serverManagementPort}</cargo.jboss.management-http.port>
                                 </properties>
                             </configuration>
                         </configuration>

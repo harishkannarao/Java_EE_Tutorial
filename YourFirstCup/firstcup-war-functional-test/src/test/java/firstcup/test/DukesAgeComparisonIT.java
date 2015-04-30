@@ -15,7 +15,7 @@ import javax.inject.Inject;
 import static org.junit.Assert.assertEquals;
 
 //@RunWith(WeldJUnit4Runner.class)
-public class DukesAgeComparisonTest {
+public class DukesAgeComparisonIT {
 
 /*    @Inject
     private HomePage homePage;
