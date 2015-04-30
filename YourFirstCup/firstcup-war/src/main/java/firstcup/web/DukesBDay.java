@@ -25,6 +25,9 @@ import java.util.logging.Logger;
 @SessionScoped
 public class DukesBDay implements Serializable {
 
+    private static final String APP_SERVER_KEY = "appServerUrl";
+    private static final String DEFAULT_APP_SERVER_VALUE = "http://localhost:8080";
+
     @EJB
     private DukesBirthdayBean dukesBirthdayBean;
     protected int age;
@@ -60,13 +63,17 @@ public class DukesBDay implements Serializable {
         try {
             Client client = ClientBuilder.newClient();
             WebTarget target
-                    = client.target("http://localhost:8080/dukes-age/webapi/dukesAge");
+                    = client.target(getAppUrl() + "/dukes-age/webapi/dukesAge");
             String response = target.request().get(String.class);
             age = Integer.parseInt(response);
         } catch (Exception ex) {
             logger.log(Level.SEVERE, "processing of HTTP response failed", ex);
         }
         return age;
+    }
+
+    private String getAppUrl() {
+        return System.getProperty(APP_SERVER_KEY, DEFAULT_APP_SERVER_VALUE);
     }
 
     /**

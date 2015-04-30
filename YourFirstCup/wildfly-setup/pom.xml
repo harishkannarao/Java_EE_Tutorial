@@ -203,6 +203,7 @@
                                         -XX:MaxPermSize=512M
                                         -Djboss.socket.binding.port-offset=${serverPortOffset}
                                         -agentlib:jdwp=transport=dt_socket,address=${serverDebugPort},server=y,suspend=n
+                                        -DappServerUrl=${appServerUrl}
                                     </cargo.jvmargs>
                                     <cargo.jboss.configuration>standalone-full</cargo.jboss.configuration>
                                     <cargo.servlet.port>${serverHttpPort}</cargo.servlet.port>
