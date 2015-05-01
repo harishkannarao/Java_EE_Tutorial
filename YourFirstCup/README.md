@@ -40,7 +40,7 @@ This will start server at [http://localhost:9080](http://localhost:9080) (defaul
 
 To generate html reports:
 ---
-'mvn surefire-report:report-only surefire-report:failsafe-report-only'
+`mvn surefire-report:report-only surefire-report:failsafe-report-only`
 
 report will be generated under
 
