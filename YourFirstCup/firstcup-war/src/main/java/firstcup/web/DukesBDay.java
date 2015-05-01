@@ -7,10 +7,12 @@
  */
 package firstcup.web;
 
+import firstcup.cdi.producer.qualifier.DukesAgeAppUrl;
 import firstcup.ejb.DukesBirthdayBean;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.client.Client;
@@ -25,8 +27,9 @@ import java.util.logging.Logger;
 @SessionScoped
 public class DukesBDay implements Serializable {
 
-    private static final String APP_SERVER_KEY = "appServerUrl";
-    private static final String DEFAULT_APP_SERVER_VALUE = "http://localhost:8080";
+    @Inject
+    @DukesAgeAppUrl
+    private String DUKES_AGE_APP_URL;
 
     @EJB
     private DukesBirthdayBean dukesBirthdayBean;
@@ -63,17 +66,13 @@ public class DukesBDay implements Serializable {
         try {
             Client client = ClientBuilder.newClient();
             WebTarget target
-                    = client.target(getAppUrl() + "/dukes-age/webapi/dukesAge");
+                    = client.target(DUKES_AGE_APP_URL + "/dukes-age/webapi/dukesAge");
             String response = target.request().get(String.class);
             age = Integer.parseInt(response);
         } catch (Exception ex) {
             logger.log(Level.SEVERE, "processing of HTTP response failed", ex);
         }
         return age;
-    }
-
-    private String getAppUrl() {
-        return System.getProperty(APP_SERVER_KEY, DEFAULT_APP_SERVER_VALUE);
     }
 
     /**

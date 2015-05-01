@@ -29,6 +29,9 @@
         <extension module="org.wildfly.extension.io"/>
         <extension module="org.wildfly.extension.undertow"/>
     </extensions>
+    <system-properties>
+        <property name="firstcup.dukeAgeAppUrl" value="${appServerUrl}"/>
+    </system-properties>
     <management>
         <security-realms>
             <security-realm name="ManagementRealm">
