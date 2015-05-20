@@ -14,11 +14,11 @@
     <name>${project.artifactId}</name>
 
     <modules>
-        <module>../wildfly-setup</module>
-        <module>../webdriver-pages</module>
-        <module>../dukes-age-functional-test</module>
-        <module>../firstcup-war-functional-test</module>
-        <module>../firstcup-war-bdd-functional-test</module>
+        <module>wildfly-setup</module>
+        <module>webdriver-pages</module>
+        <module>dukes-age-functional-test</module>
+        <module>firstcup-war-functional-test</module>
+        <module>firstcup-war-bdd-functional-test</module>
     </modules>
 
     <dependencies>

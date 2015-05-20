@@ -7,10 +7,10 @@
         <artifactId>qa-test-parent</artifactId>
         <groupId>com.mycompany</groupId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../qa-test-parent/pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>webdriver-pages</artifactId>
+    <artifactId>firstcup-war-functional-test</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
 
@@ -19,6 +19,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <appServerUrl>${appServerUrl}</appServerUrl>
+                    </systemPropertyVariables>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -33,20 +38,21 @@
             </plugin>
         </plugins>
     </build>
-
+    
     <dependencies>
+        
         <dependency>
-            <groupId>org.jboss.weld.se</groupId>
-            <artifactId>weld-se</artifactId>
-            <scope>provided</scope>
+            <groupId>com.mycompany</groupId>
+            <artifactId>weld-junit-support</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <scope>provided</scope>
+            <groupId>com.mycompany</groupId>
+            <artifactId>webdriver-pages</artifactId>
+            <scope>test</scope>
         </dependency>
-
+        
     </dependencies>
 
 </project>

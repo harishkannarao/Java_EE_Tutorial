@@ -14,10 +14,10 @@
     <name>${project.artifactId}</name>
 
     <modules>
-        <module>../db-fixtures-jar</module>
-        <module>../dukes-age</module>
-        <module>../firstcup-war</module>
-        <module>../db-test-support-war</module>
+        <module>db-fixtures-jar</module>
+        <module>dukes-age</module>
+        <module>firstcup-war</module>
+        <module>db-test-support-war</module>
     </modules>
 
     <dependencies>
