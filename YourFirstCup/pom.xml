@@ -11,6 +11,7 @@
 
     <modules>
         <module>common-parent</module>
+        <module>thirdparty-contracts-parent</module>
         <module>dev-app-parent</module>
         <module>qa-test-parent</module>
     </modules>
