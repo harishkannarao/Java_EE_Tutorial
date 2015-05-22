@@ -12,5 +12,31 @@
     <artifactId>soap-service-contracts-jar</artifactId>
     <packaging>jar</packaging>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <!-- Following configuration will invoke wsimport once for each wsdl. -->
+                        <configuration>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <xnocompile>true</xnocompile>
+                            <sourceDestDir>${project.build.sourceDirectory}</sourceDestDir>
+                            <wsdlFiles>
+                                <wsdlFile>${project.basedir}/wsdls/HelloWorldService/wsdl/HelloWorldService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

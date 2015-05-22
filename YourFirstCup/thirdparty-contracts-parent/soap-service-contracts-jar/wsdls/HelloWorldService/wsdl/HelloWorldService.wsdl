@@ -1,9 +1,9 @@
 <definitions name="HelloWorldService"
-                  targetNamespace="http://www.examples.org/wsdl/HelloWorldService.wsdl"
+                  targetNamespace="http://www.example.org/wsdl/HelloWorldService.wsdl"
                   xmlns="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-                  xmlns:tns="http://www.examples.org/wsdl/HelloWorldService.wsdl"
+                  xmlns:tns="http://www.example.org/wsdl/HelloWorldService.wsdl"
                   xmlns:say_hello="http://www.example.org/xsd/SayHello.xsd"
                   xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <types>
@@ -37,7 +37,7 @@
     </binding>
     <service name="HelloWorldService">
         <port name="HellowWorldPort" binding="tns:HelloWorldPortBinding">
-            <soap:address location="http://www.examples.org/service/HelloWorldService"/>
+            <soap:address location="http://www.example.org/service/HelloWorldService"/>
         </port>
     </service>
 </definitions>
