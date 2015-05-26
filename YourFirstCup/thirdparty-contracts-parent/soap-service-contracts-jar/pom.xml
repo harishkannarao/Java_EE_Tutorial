@@ -22,13 +22,13 @@
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
-                        <!-- Following configuration will invoke wsimport once for each wsdl. -->
                         <configuration>
                             <vmArgs>
                                 <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
                             </vmArgs>
                             <xnocompile>true</xnocompile>
                             <sourceDestDir>${project.build.sourceDirectory}</sourceDestDir>
+                            <!-- Following configuration will invoke wsimport once for each wsdl. -->
                             <wsdlFiles>
                                 <wsdlFile>${project.basedir}/wsdls/HelloWorldService/wsdl/HelloWorldService.wsdl</wsdlFile>
                             </wsdlFiles>
