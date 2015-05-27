@@ -12,7 +12,7 @@
     <artifactId>thirdparty-contracts-parent</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>soap-service-contracts-jar</module>
+        <module>thirdparty-soap-service-contracts-jar</module>
     </modules>
 
 

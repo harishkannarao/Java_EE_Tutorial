@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "HelloWorldService", targetNamespace = "http://www.example.org/wsdl/HelloWorldService.wsdl", wsdlLocation = "file:/C:/Users/u6024002/Harish/SourceCode/Personal/Java_EE_Tutorial/YourFirstCup/thirdparty-contracts-parent/soap-service-contracts-jar/wsdls/HelloWorldService/wsdl/HelloWorldService.wsdl")
+@WebServiceClient(name = "HelloWorldService", targetNamespace = "http://www.example.org/wsdl/HelloWorldService.wsdl", wsdlLocation = "file:/C:/Users/u6024002/Harish/SourceCode/Personal/Java_EE_Tutorial/YourFirstCup/thirdparty-contracts-parent/thirdparty-soap-service-contracts-jar/wsdls/HelloWorldService/wsdl/HelloWorldService.wsdl")
 public class HelloWorldService
     extends Service
 {
@@ -30,7 +30,7 @@ public class HelloWorldService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/C:/Users/u6024002/Harish/SourceCode/Personal/Java_EE_Tutorial/YourFirstCup/thirdparty-contracts-parent/soap-service-contracts-jar/wsdls/HelloWorldService/wsdl/HelloWorldService.wsdl");
+            url = new URL("file:/C:/Users/u6024002/Harish/SourceCode/Personal/Java_EE_Tutorial/YourFirstCup/thirdparty-contracts-parent/thirdparty-soap-service-contracts-jar/wsdls/HelloWorldService/wsdl/HelloWorldService.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
