@@ -36,7 +36,7 @@
         </operation>
     </binding>
     <service name="HelloWorldService">
-        <port name="HellowWorldPort" binding="tns:HelloWorldPortBinding">
+        <port name="HelloWorldPort" binding="tns:HelloWorldPortBinding">
             <soap:address location="http://www.example.org/service/HelloWorldService"/>
         </port>
     </service>

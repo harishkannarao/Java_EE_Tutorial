@@ -28,9 +28,11 @@
                             </vmArgs>
                             <xnocompile>true</xnocompile>
                             <sourceDestDir>${project.build.sourceDirectory}</sourceDestDir>
+                            <wsdlLocation>http://www.example.org/service/*</wsdlLocation>
                             <!-- Following configuration will invoke wsimport once for each wsdl. -->
+                            <wsdlDirectory>src/wsdls</wsdlDirectory>
                             <wsdlFiles>
-                                <wsdlFile>${project.basedir}/wsdls/HelloWorldService/wsdl/HelloWorldService.wsdl</wsdlFile>
+                                <wsdlFile>HelloWorldService/wsdl/HelloWorldService.wsdl</wsdlFile>
                             </wsdlFiles>
                         </configuration>
                     </execution>

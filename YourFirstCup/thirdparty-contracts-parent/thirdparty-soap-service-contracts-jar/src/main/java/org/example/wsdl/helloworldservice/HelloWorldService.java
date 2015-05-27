@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "HelloWorldService", targetNamespace = "http://www.example.org/wsdl/HelloWorldService.wsdl", wsdlLocation = "file:/C:/Users/u6024002/Harish/SourceCode/Personal/Java_EE_Tutorial/YourFirstCup/thirdparty-contracts-parent/thirdparty-soap-service-contracts-jar/wsdls/HelloWorldService/wsdl/HelloWorldService.wsdl")
+@WebServiceClient(name = "HelloWorldService", targetNamespace = "http://www.example.org/wsdl/HelloWorldService.wsdl", wsdlLocation = "http://www.example.org/service/HelloWorldService/wsdl/HelloWorldService.wsdl")
 public class HelloWorldService
     extends Service
 {
@@ -30,7 +30,7 @@ public class HelloWorldService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/C:/Users/u6024002/Harish/SourceCode/Personal/Java_EE_Tutorial/YourFirstCup/thirdparty-contracts-parent/thirdparty-soap-service-contracts-jar/wsdls/HelloWorldService/wsdl/HelloWorldService.wsdl");
+            url = new URL("http://www.example.org/service/HelloWorldService/wsdl/HelloWorldService.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -67,9 +67,9 @@ public class HelloWorldService
      * @return
      *     returns HelloWorldPortType
      */
-    @WebEndpoint(name = "HellowWorldPort")
-    public HelloWorldPortType getHellowWorldPort() {
-        return super.getPort(new QName("http://www.example.org/wsdl/HelloWorldService.wsdl", "HellowWorldPort"), HelloWorldPortType.class);
+    @WebEndpoint(name = "HelloWorldPort")
+    public HelloWorldPortType getHelloWorldPort() {
+        return super.getPort(new QName("http://www.example.org/wsdl/HelloWorldService.wsdl", "HelloWorldPort"), HelloWorldPortType.class);
     }
 
     /**
@@ -79,9 +79,9 @@ public class HelloWorldService
      * @return
      *     returns HelloWorldPortType
      */
-    @WebEndpoint(name = "HellowWorldPort")
-    public HelloWorldPortType getHellowWorldPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://www.example.org/wsdl/HelloWorldService.wsdl", "HellowWorldPort"), HelloWorldPortType.class, features);
+    @WebEndpoint(name = "HelloWorldPort")
+    public HelloWorldPortType getHelloWorldPort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://www.example.org/wsdl/HelloWorldService.wsdl", "HelloWorldPort"), HelloWorldPortType.class, features);
     }
 
     private static URL __getWsdlLocation() {
