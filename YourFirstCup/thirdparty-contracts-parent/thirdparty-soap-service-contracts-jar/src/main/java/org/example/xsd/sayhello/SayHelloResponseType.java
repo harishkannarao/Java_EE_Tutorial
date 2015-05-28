@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="greetings" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
+ *         &lt;element name="greetings" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,17 +35,17 @@ import javax.xml.bind.annotation.XmlType;
 public class SayHelloResponseType {
 
     @XmlElement(required = true)
-    protected Object greetings;
+    protected String greetings;
 
     /**
      * Gets the value of the greetings property.
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public Object getGreetings() {
+    public String getGreetings() {
         return greetings;
     }
 
@@ -54,10 +54,10 @@ public class SayHelloResponseType {
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public void setGreetings(Object value) {
+    public void setGreetings(String value) {
         this.greetings = value;
     }
 

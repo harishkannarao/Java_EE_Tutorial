@@ -7,15 +7,15 @@
     <element name="sayHelloRequestType">
         <complexType>
             <sequence>
-                <element id="name" name="name" minOccurs="1" maxOccurs="1"/>
-                <element id="gender" name="gender" minOccurs="1" maxOccurs="1"/>
+                <element id="name" name="name" minOccurs="1" maxOccurs="1" type="string"/>
+                <element id="gender" name="gender" minOccurs="1" maxOccurs="1" type="string"/>
             </sequence>
         </complexType>
     </element>
     <element name="sayHelloResponseType">
         <complexType>
             <sequence>
-                <element id="greetings" name="greetings" minOccurs="1" maxOccurs="1"/>
+                <element id="greetings" name="greetings" minOccurs="1" maxOccurs="1" type="string"/>
             </sequence>
         </complexType>
     </element>

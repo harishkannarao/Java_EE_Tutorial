@@ -18,8 +18,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *         &lt;element name="gender" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="gender" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,19 +37,19 @@ import javax.xml.bind.annotation.XmlType;
 public class SayHelloRequestType {
 
     @XmlElement(required = true)
-    protected Object name;
+    protected String name;
     @XmlElement(required = true)
-    protected Object gender;
+    protected String gender;
 
     /**
      * Gets the value of the name property.
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public Object getName() {
+    public String getName() {
         return name;
     }
 
@@ -58,10 +58,10 @@ public class SayHelloRequestType {
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public void setName(Object value) {
+    public void setName(String value) {
         this.name = value;
     }
 
@@ -70,10 +70,10 @@ public class SayHelloRequestType {
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public Object getGender() {
+    public String getGender() {
         return gender;
     }
 
@@ -82,10 +82,10 @@ public class SayHelloRequestType {
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public void setGender(Object value) {
+    public void setGender(String value) {
         this.gender = value;
     }
 

@@ -180,6 +180,22 @@
                             </target>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>copy-thirdparty-soap-service-test-support-war</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skipServerSetup}</skip>
+                            <target name="copy-thirdparty-soap-service-test-support-war">
+                                <dependencyfilesets prefix="mydeps."/>
+                                <copy tofile="${wildfly.deployments}/thirdparty-soap-service-test-support-war.war">
+                                    <fileset refid="mydeps.com.mycompany:thirdparty-soap-service-test-support-war:war" />
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 
@@ -255,6 +271,13 @@
         <dependency>
             <groupId>com.mycompany</groupId>
             <artifactId>db-test-support-war</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>thirdparty-soap-service-test-support-war</artifactId>
             <version>${project.version}</version>
             <type>war</type>
         </dependency>
