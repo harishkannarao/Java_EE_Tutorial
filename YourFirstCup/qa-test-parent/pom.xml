@@ -19,7 +19,44 @@
         <module>dukes-age-functional-test</module>
         <module>firstcup-war-functional-test</module>
         <module>firstcup-war-bdd-functional-test</module>
+        <module>thirdparty-services-functional-test</module>
     </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <appServerUrl>${appServerUrl}</appServerUrl>
+                    </systemPropertyVariables>
+                    <skipTests>${skipFunctionalTest}</skipTests>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <appServerUrl>${appServerUrl}</appServerUrl>
+                    </systemPropertyVariables>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skipFunctionalTest}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
 
