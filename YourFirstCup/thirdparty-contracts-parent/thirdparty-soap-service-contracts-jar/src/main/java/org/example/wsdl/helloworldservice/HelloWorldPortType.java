@@ -8,8 +8,8 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import org.example.xsd.sayhello.ObjectFactory;
-import org.example.xsd.sayhello.SayHelloRequestType;
-import org.example.xsd.sayhello.SayHelloResponseType;
+import org.example.xsd.sayhello.SayHelloRequest;
+import org.example.xsd.sayhello.SayHelloResponse;
 
 
 /**
@@ -18,7 +18,7 @@ import org.example.xsd.sayhello.SayHelloResponseType;
  * Generated source version: 2.2
  * 
  */
-@WebService(name = "HelloWorldPortType", targetNamespace = "http://www.example.org/wsdl/HelloWorldService.wsdl")
+@WebService(name = "HelloWorldPortType", targetNamespace = "http://helloworldservice.wsdl.example.org/")
 @SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 @XmlSeeAlso({
     ObjectFactory.class
@@ -30,12 +30,12 @@ public interface HelloWorldPortType {
      * 
      * @param parameters
      * @return
-     *     returns org.example.xsd.sayhello.SayHelloResponseType
+     *     returns org.example.xsd.sayhello.SayHelloResponse
      */
     @WebMethod
-    @WebResult(name = "sayHelloResponseType", targetNamespace = "http://www.example.org/xsd/SayHello.xsd", partName = "parameters")
-    public SayHelloResponseType sayHello(
-        @WebParam(name = "sayHelloRequestType", targetNamespace = "http://www.example.org/xsd/SayHello.xsd", partName = "parameters")
-        SayHelloRequestType parameters);
+    @WebResult(name = "sayHelloResponse", targetNamespace = "http://sayhello.xsd.example.org/", partName = "parameters")
+    public SayHelloResponse sayHello(
+        @WebParam(name = "sayHelloRequest", targetNamespace = "http://sayhello.xsd.example.org/", partName = "parameters")
+        SayHelloRequest parameters);
 
 }

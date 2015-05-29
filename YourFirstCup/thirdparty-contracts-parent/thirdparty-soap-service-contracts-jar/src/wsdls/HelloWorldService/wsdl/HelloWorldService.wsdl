@@ -1,42 +1,42 @@
 <definitions name="HelloWorldService"
-                  targetNamespace="http://www.example.org/wsdl/HelloWorldService.wsdl"
+                  targetNamespace="http://helloworldservice.wsdl.example.org/"
                   xmlns="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-                  xmlns:tns="http://www.example.org/wsdl/HelloWorldService.wsdl"
-                  xmlns:say_hello="http://www.example.org/xsd/SayHello.xsd"
+                  xmlns:tns="http://helloworldservice.wsdl.example.org/"
+                  xmlns:say_hello="http://sayhello.xsd.example.org/"
                   xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <types>
         <xsd:schema>
-            <xsd:import namespace="http://www.example.org/xsd/SayHello.xsd" schemaLocation="../xsd/SayHello.xsd"/>
+            <xsd:import namespace="http://sayhello.xsd.example.org/" schemaLocation="../xsd/SayHello.xsd"/>
         </xsd:schema>
     </types>
-    <message name="sayHelloRequest">
-        <part name="parameters" element="say_hello:sayHelloRequestType"/>
+    <message name="sayHello">
+        <part name="parameters" element="say_hello:sayHelloRequest"/>
     </message>
     <message name="sayHelloResponse">
-        <part name="parameters" element="say_hello:sayHelloResponseType"/>
+        <part name="parameters" element="say_hello:sayHelloResponse"/>
     </message>
     <portType name="HelloWorldPortType">
         <operation name="sayHello">
-            <input message="tns:sayHelloRequest"/>
-            <output message="tns:sayHelloResponse"/>
+            <input message="tns:sayHello" name="sayHello"/>
+            <output message="tns:sayHelloResponse" name="sayHelloResponse"/>
         </operation>
     </portType>
-    <binding name="HelloWorldPortBinding" type="tns:HelloWorldPortType">
+    <binding name="HelloWorldServiceSoapBinding" type="tns:HelloWorldPortType">
         <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
         <operation name="sayHello">
             <soap:operation soapAction=""/>
-            <input>
+            <input name="sayHello">
                 <soap:body use="literal"/>
             </input>
-            <output>
+            <output name="sayHelloResponse">
                 <soap:body use="literal"/>
             </output>
         </operation>
     </binding>
     <service name="HelloWorldService">
-        <port name="HelloWorldPort" binding="tns:HelloWorldPortBinding">
+        <port name="HelloWorldPort" binding="tns:HelloWorldServiceSoapBinding">
             <soap:address location="http://www.example.org/service/HelloWorldService"/>
         </port>
     </service>

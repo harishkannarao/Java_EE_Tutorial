@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "greetings"
 })
-@XmlRootElement(name = "sayHelloResponseType")
-public class SayHelloResponseType {
+@XmlRootElement(name = "sayHelloResponse")
+public class SayHelloResponse {
 
     @XmlElement(required = true)
     protected String greetings;

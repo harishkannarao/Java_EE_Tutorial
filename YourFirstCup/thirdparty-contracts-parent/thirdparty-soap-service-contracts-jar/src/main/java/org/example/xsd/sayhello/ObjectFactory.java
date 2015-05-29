@@ -30,19 +30,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SayHelloRequestType }
+     * Create an instance of {@link SayHelloRequest }
      * 
      */
-    public SayHelloRequestType createSayHelloRequestType() {
-        return new SayHelloRequestType();
+    public SayHelloRequest createSayHelloRequest() {
+        return new SayHelloRequest();
     }
 
     /**
-     * Create an instance of {@link SayHelloResponseType }
+     * Create an instance of {@link SayHelloResponse }
      * 
      */
-    public SayHelloResponseType createSayHelloResponseType() {
-        return new SayHelloResponseType();
+    public SayHelloResponse createSayHelloResponse() {
+        return new SayHelloResponse();
     }
 
 }

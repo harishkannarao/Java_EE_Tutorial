@@ -17,14 +17,14 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "HelloWorldService", targetNamespace = "http://www.example.org/wsdl/HelloWorldService.wsdl", wsdlLocation = "http://www.example.org/service/HelloWorldService/wsdl/HelloWorldService.wsdl")
+@WebServiceClient(name = "HelloWorldService", targetNamespace = "http://helloworldservice.wsdl.example.org/", wsdlLocation = "http://www.example.org/service/HelloWorldService/wsdl/HelloWorldService.wsdl")
 public class HelloWorldService
     extends Service
 {
 
     private final static URL HELLOWORLDSERVICE_WSDL_LOCATION;
     private final static WebServiceException HELLOWORLDSERVICE_EXCEPTION;
-    private final static QName HELLOWORLDSERVICE_QNAME = new QName("http://www.example.org/wsdl/HelloWorldService.wsdl", "HelloWorldService");
+    private final static QName HELLOWORLDSERVICE_QNAME = new QName("http://helloworldservice.wsdl.example.org/", "HelloWorldService");
 
     static {
         URL url = null;
@@ -69,7 +69,7 @@ public class HelloWorldService
      */
     @WebEndpoint(name = "HelloWorldPort")
     public HelloWorldPortType getHelloWorldPort() {
-        return super.getPort(new QName("http://www.example.org/wsdl/HelloWorldService.wsdl", "HelloWorldPort"), HelloWorldPortType.class);
+        return super.getPort(new QName("http://helloworldservice.wsdl.example.org/", "HelloWorldPort"), HelloWorldPortType.class);
     }
 
     /**
@@ -81,7 +81,7 @@ public class HelloWorldService
      */
     @WebEndpoint(name = "HelloWorldPort")
     public HelloWorldPortType getHelloWorldPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://www.example.org/wsdl/HelloWorldService.wsdl", "HelloWorldPort"), HelloWorldPortType.class, features);
+        return super.getPort(new QName("http://helloworldservice.wsdl.example.org/", "HelloWorldPort"), HelloWorldPortType.class, features);
     }
 
     private static URL __getWsdlLocation() {

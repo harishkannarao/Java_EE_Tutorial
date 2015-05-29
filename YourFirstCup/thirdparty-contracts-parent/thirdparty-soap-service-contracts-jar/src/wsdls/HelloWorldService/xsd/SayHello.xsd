@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-            targetNamespace="http://www.example.org/xsd/SayHello.xsd"
-            xmlns:tns="http://www.example.org/xsd/SayHello.xsd"
+            targetNamespace="http://sayhello.xsd.example.org/"
+            xmlns:tns="http://sayhello.xsd.example.org/"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             elementFormDefault="qualified">
-    <element name="sayHelloRequestType">
+    <element name="sayHelloRequest">
         <complexType>
             <sequence>
                 <element id="name" name="name" minOccurs="1" maxOccurs="1" type="string"/>
@@ -12,7 +12,7 @@
             </sequence>
         </complexType>
     </element>
-    <element name="sayHelloResponseType">
+    <element name="sayHelloResponse">
         <complexType>
             <sequence>
                 <element id="greetings" name="greetings" minOccurs="1" maxOccurs="1" type="string"/>

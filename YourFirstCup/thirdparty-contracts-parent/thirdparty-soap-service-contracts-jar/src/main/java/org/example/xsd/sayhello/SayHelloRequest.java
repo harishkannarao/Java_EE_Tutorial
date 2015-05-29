@@ -33,8 +33,8 @@ import javax.xml.bind.annotation.XmlType;
     "name",
     "gender"
 })
-@XmlRootElement(name = "sayHelloRequestType")
-public class SayHelloRequestType {
+@XmlRootElement(name = "sayHelloRequest")
+public class SayHelloRequest {
 
     @XmlElement(required = true)
     protected String name;
