@@ -458,13 +458,17 @@
             <modify-wsdl-address>true</modify-wsdl-address>
             <wsdl-port>8080</wsdl-port>
             <wsdl-secure-port>8443</wsdl-secure-port>
-            <endpoint-config name="Standard-Endpoint-Config"/>
+            <endpoint-config name="Standard-Endpoint-Config">
+                <property name="schema-validation-enabled" value="true"/>
+            </endpoint-config>
             <endpoint-config name="Recording-Endpoint-Config">
                 <pre-handler-chain name="recording-handlers" protocol-bindings="##SOAP11_HTTP ##SOAP11_HTTP_MTOM ##SOAP12_HTTP ##SOAP12_HTTP_MTOM">
                     <handler name="RecordingHandler" class="org.jboss.ws.common.invocation.RecordingServerHandler"/>
                 </pre-handler-chain>
             </endpoint-config>
-            <client-config name="Standard-Client-Config"/>
+            <client-config name="Standard-Client-Config">
+                <property name="schema-validation-enabled" value="true"/>
+            </client-config>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:weld:2.0"/>
     </profile>
