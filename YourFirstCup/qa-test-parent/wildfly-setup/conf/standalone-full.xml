@@ -456,8 +456,10 @@
         <subsystem xmlns="urn:jboss:domain:webservices:1.2">
             <wsdl-host>jbossws.undefined.host</wsdl-host>
             <modify-wsdl-address>true</modify-wsdl-address>
-            <wsdl-port>8080</wsdl-port>
-            <wsdl-secure-port>8443</wsdl-secure-port>
+            <!-- To fix the wsdl port use below two tags -->
+            <!-- To be used only for production, not for local development -->
+            <!--<wsdl-port>8080</wsdl-port>-->
+            <!--<wsdl-secure-port>8443</wsdl-secure-port>-->
             <endpoint-config name="Standard-Endpoint-Config">
                 <property name="schema-validation-enabled" value="true"/>
             </endpoint-config>
@@ -475,12 +477,18 @@
     <interfaces>
         <interface name="management">
             <inet-address value="${jboss.bind.address.management:127.0.0.1}"/>
+            <!-- Enables access to management port from remote ip, enable it with care -->
+            <!--<any-ipv4-address/>-->
+            <!-- or -->
+            <!--<inet-address value="${jboss.bind.address.management:0.0.0.0}"/>-->
         </interface>
         <interface name="public">
             <!-- Original value -->
             <!-- <inet-address value="${jboss.bind.address:127.0.0.1}"/> -->
             <!-- Enables traffic from remote ip, enable it with care -->
             <any-ipv4-address/>
+            <!-- or -->
+            <!-- <inet-address value="${jboss.bind.address:0.0.0.0}"/> -->
         </interface>
         <!-- TODO - only show this if the jacorb subsystem is added  -->
         <interface name="unsecure">
