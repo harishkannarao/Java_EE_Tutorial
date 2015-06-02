@@ -11,9 +11,14 @@ import javax.ws.rs.Produces;
 @Path("dbSupport")
 public class DbSupportResource {
     
-    @Inject
+
     private DbSupportService dbSupportService;
-    
+
+    @Inject
+    public void setDbSupportService(DbSupportService dbSupportService) {
+        this.dbSupportService = dbSupportService;
+    }
+
     @GET
     @Path("getAgeDifferenceInfo")
     @Produces("application/json")

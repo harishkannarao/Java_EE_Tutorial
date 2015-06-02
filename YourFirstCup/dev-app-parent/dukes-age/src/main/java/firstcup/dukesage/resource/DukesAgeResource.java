@@ -23,8 +23,13 @@ import javax.ws.rs.Produces;
 @Path("dukesAge")
 public class DukesAgeResource {
 
+
+    private DukesAgeService service;
+
     @Inject
-    DukesAgeService service;
+    public void setService(DukesAgeService service) {
+        this.service = service;
+    }
 
     /**
      * Retrieves representation of an instance of DukesAgeResource
