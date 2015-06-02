@@ -13,8 +13,13 @@ import java.util.GregorianCalendar;
 import static org.junit.Assert.assertEquals;
 
 public class GreetingStepDefinitions {
-    @Inject
+
     private GreetingPage greetingPage;
+
+    @Inject
+    public GreetingStepDefinitions(GreetingPage greetingPage) {
+        this.greetingPage = greetingPage;
+    }
 
     @Given("^I am on greeting page$")
     public void i_am_on_greeting_page() throws Throwable{

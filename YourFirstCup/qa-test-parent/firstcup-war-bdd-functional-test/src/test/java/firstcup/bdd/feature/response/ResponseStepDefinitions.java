@@ -23,21 +23,20 @@ import static org.junit.Assert.assertTrue;
 
 public class ResponseStepDefinitions {
 
-    @Inject
     private ResponsePage responsePage;
-    
-    @Inject
     private CalendarUtil calendarUtil;
-
-    @Inject
-    @AppUrl
     private String appUrl;
-
-    @Inject
-    @TestSupportContext
     private String testSupportContext;
     
     private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
+
+    @Inject
+    public ResponseStepDefinitions(ResponsePage responsePage, CalendarUtil calendarUtil, @AppUrl String appUrl, @TestSupportContext String testSupportContext) {
+        this.responsePage = responsePage;
+        this.calendarUtil = calendarUtil;
+        this.appUrl = appUrl;
+        this.testSupportContext = testSupportContext;
+    }
 
     @Then("^Message should be displayed as (.*)$")
     public void message_should_be_displayed_as(String expectedMessage) throws Throwable {

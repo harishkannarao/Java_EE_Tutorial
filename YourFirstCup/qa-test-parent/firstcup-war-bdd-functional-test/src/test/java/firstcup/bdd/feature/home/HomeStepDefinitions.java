@@ -11,10 +11,15 @@ import static org.junit.Assert.assertTrue;
 
 public class HomeStepDefinitions {
     
-    @Inject
+
     HomePage homePage;
-    @Inject
     GreetingPage greetingPage;
+
+    @Inject
+    public HomeStepDefinitions(HomePage homePage, GreetingPage greetingPage) {
+        this.homePage = homePage;
+        this.greetingPage = greetingPage;
+    }
 
     @Given("^I navigate to home page$")
     public void i_navigate_to_home_page() throws Throwable {
