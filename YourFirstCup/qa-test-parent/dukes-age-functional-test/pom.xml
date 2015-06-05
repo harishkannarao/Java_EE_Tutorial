@@ -14,19 +14,4 @@
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>org.apache.maven.shared</groupId>
-            <artifactId>maven-invoker</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.codehaus.cargo</groupId>
-            <artifactId>cargo-core-uberjar</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
 </project>
