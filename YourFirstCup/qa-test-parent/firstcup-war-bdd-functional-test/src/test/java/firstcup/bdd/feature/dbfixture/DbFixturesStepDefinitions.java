@@ -1,6 +1,5 @@
 package firstcup.bdd.feature.dbfixture;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import firstcup.producer.qualifier.AppUrl;
@@ -9,12 +8,14 @@ import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.JacksonFeature;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
 import static org.junit.Assert.assertEquals;
 
+@Singleton
 public class DbFixturesStepDefinitions {
     @Inject
     @AppUrl

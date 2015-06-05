@@ -1,17 +1,19 @@
 package firstcup.bdd.feature.greeting;
 
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import firstcup.page.GreetingPage;
-import firstcup.page.ResponsePage;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import static org.junit.Assert.assertEquals;
 
+@Singleton
 public class GreetingStepDefinitions {
 
     private GreetingPage greetingPage;
@@ -24,7 +26,7 @@ public class GreetingStepDefinitions {
     @Given("^I am on greeting page$")
     public void i_am_on_greeting_page() throws Throwable{
         greetingPage.navigate();
-        
+
     }
     
     @Then("^Dukes age should be displayed$")

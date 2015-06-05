@@ -6,9 +6,11 @@ import firstcup.page.GreetingPage;
 import firstcup.page.HomePage;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import static org.junit.Assert.assertTrue;
 
+@Singleton
 public class HomeStepDefinitions {
     
 
