@@ -32,6 +32,10 @@ Run individual functional test in IDE:
 ---
 Go to individual functional test and run from IDE
 
+Run apps in server and functional tests:
+---
+`mvn clean install -P run-apps-functional-tests`
+
 Start wildfly server in different port (to run multiple instances):
 ---
 `mvn clean install -P run-apps -DserverPortOffset=1000 -DserverHttpPort=9080 -DserverManagementPort=10990 -DserverDebugPort=9787`

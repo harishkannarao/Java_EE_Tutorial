@@ -14,5 +14,5 @@ import org.junit.runner.RunWith;
         features="src/test/resources",
         glue = "firstcup.bdd"
 )
-public class RunCucumberTest {
+public class RunCucumberIT {
 }

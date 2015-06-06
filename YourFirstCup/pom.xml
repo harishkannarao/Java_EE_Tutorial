@@ -72,6 +72,16 @@
                 <skipFunctionalTest>false</skipFunctionalTest>
             </properties>
         </profile>
+
+        <profile>
+            <id>run-apps-functional-tests</id>
+            <properties>
+                <skipUnitTest>true</skipUnitTest>
+                <skipServerSetup>false</skipServerSetup>
+                <skipServerStartup>false</skipServerStartup>
+                <skipFunctionalTest>false</skipFunctionalTest>
+            </properties>
+        </profile>
     </profiles>
 
     <build>
