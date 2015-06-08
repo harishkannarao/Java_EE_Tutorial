@@ -1,22 +1,24 @@
 package firstcup.entity;
 
-import org.junit.Test;
+import firstcup.runner.WeldContext;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 public class FixturesCountTest extends DbFixturesSupport{
-    
-    @Inject
     private DataSource dataSource;
     
     private static final String FIXTURES_COUNT_QUERY = "select count(*) as count from FirstcupUserTest";
+
+    @BeforeClass
+    public void setupClass() throws Exception {
+        dataSource = WeldContext.INSTANCE.getBean(DataSource.class);
+    }
     
     @Test
     public void shouldLoadDbFixtures_fromSql()throws Exception {
@@ -29,6 +31,6 @@ public class FixturesCountTest extends DbFixturesSupport{
                 }
             }
         }
-        assertEquals("fixtures data no loaded", 3, count);
+        Assert.assertEquals(3, count, "fixtures data no loaded");
     }
 }

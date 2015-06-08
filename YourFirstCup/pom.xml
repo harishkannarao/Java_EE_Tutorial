@@ -30,6 +30,7 @@
         
         <java.ee.version>7.0</java.ee.version>
         <junit.version>4.12</junit.version>
+        <testng.version>6.9.4</testng.version>
         <jersey.client.version>2.14</jersey.client.version>
         <weld.se.version>2.2.8.Final</weld.se.version>
         <weld.jandex.version>1.2.1.Final</weld.jandex.version>
@@ -202,6 +203,13 @@
             </dependency>
 
             <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>org.glassfish.jersey.core</groupId>
                 <artifactId>jersey-client</artifactId>
                 <version>${jersey.client.version}</version>
@@ -316,6 +324,12 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
             <scope>test</scope>
         </dependency>
 

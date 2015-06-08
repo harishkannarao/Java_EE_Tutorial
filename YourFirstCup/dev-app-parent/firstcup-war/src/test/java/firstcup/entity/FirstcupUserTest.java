@@ -1,9 +1,10 @@
 package firstcup.entity;
 
-import org.junit.Before;
-import org.junit.Test;
+import firstcup.runner.WeldContext;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.text.SimpleDateFormat;
@@ -11,17 +12,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 public class FirstcupUserTest extends DbFixturesSupport{
-    @Inject
     private EntityManager em;
     private EntityTransaction tx;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
 
-    @Before
+    @BeforeClass
+    public void setupClass() throws Exception {
+        em = WeldContext.INSTANCE.getBean(EntityManager.class);
+    }
+
+    @BeforeMethod
     public void initTransaction() throws Exception {
         tx = em.getTransaction();
     }
@@ -63,7 +68,7 @@ public class FirstcupUserTest extends DbFixturesSupport{
         
         // then
         Double actualAverage = (Double) em.createNamedQuery("findAverageAgeDifferenceOfAllFirstcupUsers").getSingleResult();
-        assertEquals(new Double(4.5), actualAverage);
+        assertEquals(4.5, actualAverage);
     }
 
 }
