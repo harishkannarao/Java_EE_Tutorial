@@ -25,6 +25,7 @@
         <dependency>
             <groupId>com.mycompany</groupId>
             <artifactId>webdriver-pages</artifactId>
+            <type>test-jar</type>
             <scope>test</scope>
         </dependency>
         
