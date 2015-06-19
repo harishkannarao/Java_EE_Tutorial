@@ -1,19 +1,18 @@
 package firstcup.bdd.feature.greeting;
 
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import firstcup.page.GreetingPage;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import static org.junit.Assert.assertEquals;
 
-@Singleton
+@ApplicationScoped
 public class GreetingStepDefinitions {
 
     private GreetingPage greetingPage;

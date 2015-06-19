@@ -1,40 +1,28 @@
 package firstcup.dukesage.bdd.step;
 
-import cucumber.api.PendingException;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import javax.inject.Singleton;
+import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
-@Singleton
+@ApplicationScoped
 public class DukesAgeStep {
     private Client client = ClientBuilder.newClient();
     private String url;
     private Response response;
 
-    @Before
-    public void setup() {
-        url = null;
-        response = null;
-    }
-
     @Given("^Url as (.*)$")
     public void Url_as_dukes_age_webapi_dukesAge(String url) throws Throwable {
-        assertNull(this.url);
-        assertNull(this.response);
         this.url = url;
     }
 

@@ -7,15 +7,15 @@ import firstcup.producer.qualifier.TestSupportContext;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.JacksonFeature;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
 import static org.junit.Assert.assertEquals;
 
-@Singleton
+@ApplicationScoped
 public class DbFixturesStepDefinitions {
     @Inject
     @AppUrl
