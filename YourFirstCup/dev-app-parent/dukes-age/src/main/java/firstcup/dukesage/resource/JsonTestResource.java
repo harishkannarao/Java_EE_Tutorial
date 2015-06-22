@@ -21,11 +21,13 @@ public class JsonTestResource {
                 new Name("first name", "last name"),
                 new Address("some street", "some city", "some post code"),
                 Arrays.asList(new Contact("123456", "office"), new Contact("654321", "home")),
-                (String [])Arrays.asList("java", "java ee").toArray()
+                (String [])Arrays.asList("java", "java ee").toArray(),
+                "some ignored value"
         );
 
         User user2 = new User(
                 2L,
+                null,
                 null,
                 null,
                 null,
@@ -39,7 +41,8 @@ public class JsonTestResource {
                 new Name(null, " "),
                 new Address(null, null, null),
                 Arrays.asList(),
-                new String[0]
+                new String[0],
+                ""
         );
 
         User user4 = new User(
@@ -48,7 +51,8 @@ public class JsonTestResource {
                 new Name("first name", "last name"),
                 new Address("some street", "some city", "some post code"),
                 Arrays.asList(new Contact("123456", "office")),
-                (String [])Arrays.asList("java").toArray()
+                (String [])Arrays.asList("java").toArray(),
+                "some ignored value"
         );
 
 

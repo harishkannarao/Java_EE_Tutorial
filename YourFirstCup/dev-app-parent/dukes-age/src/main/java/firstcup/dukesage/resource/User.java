@@ -1,28 +1,38 @@
 package firstcup.dukesage.resource;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class User {
 
     @XmlElement(name = "ID")
     private Long id;
+    @XmlElement(name = "UserName")
     private String username;
+    @XmlElement(name = "Name")
     private Name name;
+    @XmlElement(name = "Address")
     private Address address;
+    @XmlElement(name = "Contacts")
     private List<Contact> contacts;
+    @XmlElement(name = "Skills")
     private String[] skills;
+    @XmlTransient
+    private String ignoredField;
 
+    public User() {
+    }
 
-    public User(Long id, String username, Name name, Address address, List<Contact> contacts, String[] skills) {
+    public User(Long id, String username, Name name, Address address, List<Contact> contacts, String[] skills, String ignoredField) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.address = address;
         this.contacts = contacts;
         this.skills = skills;
+        this.ignoredField = ignoredField;
     }
 
     public Long getId() {
@@ -71,5 +81,13 @@ public class User {
 
     public void setSkills(String[] skills) {
         this.skills = skills;
+    }
+
+    public String getIgnoredField() {
+        return ignoredField;
+    }
+
+    public void setIgnoredField(String ignoredField) {
+        this.ignoredField = ignoredField;
     }
 }
